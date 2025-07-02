@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>EngageFuel - Learn Programming</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
     <style>
         :root {
             --primary: #FF6B6B;
@@ -18,7 +19,7 @@
             --teal: #03DAC6;
             --card-bg: #1e1e1e;
             --text-muted: #aaaaaa;
-        } 
+        }
         
         * {
             margin: 0;
@@ -26,8 +27,6 @@
             box-sizing: border-box;
             font-family: 'Poppins', sans-serif;
         }
-        
-        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap');
         
         body {
             background-color: var(--dark);
@@ -125,6 +124,81 @@
             border-color: var(--lighter);
         }
         
+        /* Auth State Visibility */
+        #authButtons {
+            display: flex;
+        }
+        
+        #userProfile {
+            display: none;
+        }
+        
+        .logged-in #authButtons {
+            display: none;
+        }
+        
+        .logged-in #userProfile {
+            display: block;
+        }
+        
+        .logged-out #authButtons {
+            display: flex;
+        }
+        
+        .logged-out #userProfile {
+            display: none;
+        }
+        
+        /* User Profile Styles */
+        .user-profile {
+            position: relative;
+        }
+        
+        .user-dropdown {
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+        }
+        
+        .username {
+            font-weight: 600;
+            color: var(--teal);
+            margin-right: 10px;
+        }
+        
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            right: 0;
+            top: 100%;
+            background-color: var(--card-bg);
+            min-width: 160px;
+            box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+            z-index: 1;
+            border-radius: 8px;
+            overflow: hidden;
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+        
+        .dropdown-content a {
+            color: var(--light);
+            padding: 12px 16px;
+            text-decoration: none;
+            display: block;
+            transition: all 0.3s;
+            font-size: 0.9rem;
+        }
+        
+        .dropdown-content a:hover {
+            background-color: rgba(255,255,255,0.05);
+            color: var(--teal);
+            padding-left: 20px;
+        }
+        
+        .user-dropdown:hover .dropdown-content {
+            display: block;
+        }
+        
         /* Hero Section */
         .hero {
             text-align: center;
@@ -185,31 +259,11 @@
             transition: all 0.3s;
             font-weight: 600;
             box-shadow: 0 4px 15px rgba(3, 218, 198, 0.3);
-            position: relative;
-            overflow: hidden;
-            z-index: 1;
-        }
-        
-        .cta-button::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(to right, var(--purple), var(--teal));
-            opacity: 0;
-            transition: opacity 0.3s;
-            z-index: -1;
         }
         
         .cta-button:hover {
             transform: translateY(-3px) scale(1.05);
             box-shadow: 0 8px 25px rgba(187, 134, 252, 0.4);
-        }
-        
-        .cta-button:hover::before {
-            opacity: 1;
         }
         
         /* Courses Section */
@@ -234,17 +288,6 @@
             display: inline-block;
         }
         
-        .section-title::after {
-            content: '';
-            display: block;
-            width: 100px;
-            height: 5px;
-            background: linear-gradient(to right, var(--teal), var(--purple));
-            margin: 0.8rem auto;
-            border-radius: 5px;
-            box-shadow: 0 0 10px rgba(3, 218, 198, 0.3);
-        }
-        
         .courses-grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
@@ -257,13 +300,10 @@
             overflow: hidden;
             box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
             transition: all 0.3s;
-            border: 1px solid rgba(255, 255, 255, 0.05);
         }
         
         .course-card:hover {
             transform: translateY(-10px);
-            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.4);
-            border-color: rgba(187, 134, 252, 0.3);
         }
         
         .course-header {
@@ -274,35 +314,6 @@
             color: white;
             font-size: 1.8rem;
             font-weight: 700;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .course-header::after {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(135deg, rgba(0,0,0,0.3), transparent);
-        }
-        
-        .course-html {
-            background: linear-gradient(135deg, #E44D26, #F16529);
-        }
-        
-        .course-css {
-            background: linear-gradient(135deg, #264DE4, #2965F1);
-        }
-        
-        .course-cpp {
-            background: linear-gradient(135deg, #00599C, #004482);
-        }
-        
-        .course-oops {
-            background: linear-gradient(135deg, #6B5B95, #8E44AD);
         }
         
         .course-content {
@@ -317,7 +328,6 @@
         .course-content p {
             color: var(--text-muted);
             margin-bottom: 1.5rem;
-            line-height: 1.6;
         }
         
         .enroll-btn {
@@ -330,98 +340,11 @@
             transition: all 0.3s;
             font-weight: 600;
             width: 100%;
-            position: relative;
-            overflow: hidden;
-            z-index: 1;
-        }
-        
-        .enroll-btn::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(to right, var(--purple), var(--teal));
-            opacity: 0;
-            transition: opacity 0.3s;
-            z-index: -1;
         }
         
         .enroll-btn:hover {
             transform: translateY(-2px);
             box-shadow: 0 5px 15px rgba(187, 134, 252, 0.4);
-        }
-        
-        .enroll-btn:hover::before {
-            opacity: 1;
-        }
-        
-        /* Features Section */
-        .features {
-            background: linear-gradient(135deg, #1a1a2e, #16213e);
-            padding: 5rem 2rem;
-            clip-path: polygon(0 15%, 100% 0, 100% 100%, 0 100%);
-            margin-top: 4rem;
-            position: relative;
-        }
-        
-        .features::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: 
-                radial-gradient(circle at 30% 70%, rgba(187, 134, 252, 0.1) 0%, transparent 40%),
-                radial-gradient(circle at 70% 30%, rgba(3, 218, 198, 0.1) 0%, transparent 40%);
-        }
-        
-        .features-container {
-            max-width: 1200px;
-            margin: 0 auto;
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-            position: relative;
-            z-index: 1;
-        }
-        
-        .feature-card {
-            background: rgba(30, 30, 30, 0.7);
-            padding: 2rem;
-            border-radius: 15px;
-            text-align: center;
-            transition: all 0.3s;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.05);
-        }
-        
-        .feature-card:hover {
-            transform: scale(1.05);
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
-            border-color: rgba(187, 134, 252, 0.3);
-        }
-        
-        .feature-icon {
-            font-size: 3rem;
-            margin-bottom: 1.5rem;
-            background: linear-gradient(to right, var(--teal), var(--purple));
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
-        }
-        
-        .feature-card h3 {
-            margin-bottom: 1rem;
-            color: var(--lighter);
-        }
-        
-        .feature-card p {
-            color: var(--text-muted);
-            line-height: 1.6;
         }
         
         /* Footer */
@@ -430,7 +353,6 @@
             color: white;
             padding: 4rem 2rem 2rem;
             text-align: center;
-            border-top: 1px solid rgba(255, 255, 255, 0.05);
         }
         
         .footer-content {
@@ -464,31 +386,6 @@
         
         .footer-links a:hover {
             color: var(--teal);
-            padding-left: 5px;
-        }
-        
-        .social-links {
-            display: flex;
-            gap: 1rem;
-            margin-top: 1.5rem;
-        }
-        
-        .social-links a {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            width: 40px;
-            height: 40px;
-            background: rgba(255, 255, 255, 0.05);
-            border-radius: 50%;
-            color: var(--light);
-            transition: all 0.3s;
-        }
-        
-        .social-links a:hover {
-            background: var(--purple);
-            color: var(--dark);
-            transform: translateY(-3px);
         }
         
         .copyright {
@@ -496,46 +393,6 @@
             padding-top: 1.5rem;
             border-top: 1px solid rgba(255, 255, 255, 0.05);
             color: var(--text-muted);
-            font-size: 0.9rem;
-        }
-        
-        /* Floating Action Button */
-        .fab {
-            position: fixed;
-            bottom: 30px;
-            right: 30px;
-            width: 60px;
-            height: 60px;
-            background: linear-gradient(135deg, var(--teal), var(--purple));
-            color: var(--dark);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.5rem;
-            box-shadow: 0 4px 20px rgba(3, 218, 198, 0.3);
-            cursor: pointer;
-            transition: all 0.3s;
-            z-index: 10;
-        }
-        
-        .fab:hover {
-            transform: scale(1.1) rotate(15deg);
-            box-shadow: 0 6px 25px rgba(187, 134, 252, 0.4);
-        }
-        
-        /* Glow Effects */
-        .glow {
-            animation: glow 2s infinite alternate;
-        }
-        
-        @keyframes glow {
-            from {
-                box-shadow: 0 0 5px rgba(3, 218, 198, 0.5);
-            }
-            to {
-                box-shadow: 0 0 20px rgba(187, 134, 252, 0.7);
-            }
         }
         
         /* Responsive Design */
@@ -561,51 +418,10 @@
             .hero h1 {
                 font-size: 2.5rem;
             }
-            
-            .hero p {
-                font-size: 1.1rem;
-            }
-            
-            .section-title h2 {
-                font-size: 2rem;
-            }
-        }
-        
-        /* Animations */
-        @keyframes float {
-            0% { transform: translateY(0px); }
-            50% { transform: translateY(-10px); }
-            100% { transform: translateY(0px); }
-        }
-        
-        .floating {
-            animation: float 3s ease-in-out infinite;
-        }
-        
-        .delay-1 {
-            animation-delay: 0.2s;
-        }
-        
-        .delay-2 {
-            animation-delay: 0.4s;
-        }
-        
-        .delay-3 {
-            animation-delay: 0.6s;
-        }
-        
-        .pulse {
-            animation: pulse 2s infinite;
-        }
-        
-        @keyframes pulse {
-            0% { transform: scale(1); }
-            50% { transform: scale(1.05); }
-            100% { transform: scale(1); }
         }
     </style>
 </head>
-<body>
+<body class="logged-out">
     <header>
         <nav class="navbar">
             <div class="logo">
@@ -618,9 +434,21 @@
                 <li><a href="#">Blog</a></li>
                 <li><a href="#">Contact</a></li>
             </ul>
-            <div class="auth-buttons">
-              <a href="/login.html"><button class="login" >Login</a></button>
-                <a href="/signup.html"> <button class="signup">Sign Up Free</a></button>
+            
+            <div class="auth-buttons" id="authButtons">
+                <a href="login.html"><button class="login">Login</button></a>
+                <a href="signup.html"><button class="signup">Sign Up Free</button></a>
+            </div>
+            
+            <div class="user-profile" id="userProfile">
+                <div class="user-dropdown">
+                    <span class="username">USERNAME</span>
+                    <div class="dropdown-content">
+                        <a href="#">Reward History</a>
+                        <a href="#">Support</a>
+                        <a href="#" id="logoutBtn">Logout</a>
+                    </div>
+                </div>
             </div>
         </nav>
     </header>
@@ -629,7 +457,7 @@
         <div class="hero-content">
             <h1>Fuel Your Coding Journey</h1>
             <p>Master in-demand programming skills with our interactive courses designed for beginners and advanced learners alike.</p>
-            <button class="cta-button pulse glow">Start Learning Today</button>
+            <button class="cta-button">Start Learning Today</button>
         </div>
     </section>
     
@@ -638,8 +466,8 @@
             <h2>Our Popular Courses</h2>
         </div>
         <div class="courses-grid">
-            <div class="course-card floating">
-                <div class="course-header course-cpp">
+            <div class="course-card">
+                <div class="course-header" style="background: linear-gradient(135deg, #00599C, #004482);">
                     C++ Programming
                 </div>
                 <div class="course-content">
@@ -649,8 +477,8 @@
                 </div>
             </div>
             
-            <div class="course-card floating delay-1">
-                <div class="course-header course-oops">
+            <div class="course-card">
+                <div class="course-header" style="background: linear-gradient(135deg, #6B5B95, #8E44AD);">
                     OOPs Concepts
                 </div>
                 <div class="course-content">
@@ -660,8 +488,8 @@
                 </div>
             </div>
             
-            <div class="course-card floating delay-2">
-                <div class="course-header course-html">
+            <div class="course-card">
+                <div class="course-header" style="background: linear-gradient(135deg, #E44D26, #F16529);">
                     HTML5
                 </div>
                 <div class="course-content">
@@ -671,8 +499,8 @@
                 </div>
             </div>
             
-            <div class="course-card floating delay-3">
-                <div class="course-header course-css">
+            <div class="course-card">
+                <div class="course-header" style="background: linear-gradient(135deg, #264DE4, #2965F1);">
                     CSS3
                 </div>
                 <div class="course-content">
@@ -684,39 +512,11 @@
         </div>
     </section>
     
-    <section class="features">
-        <div class="features-container">
-            <div class="feature-card">
-                <div class="feature-icon">🎯</div>
-                <h3>Project-Based Learning</h3>
-                <p>Learn by building real-world projects that you can add to your portfolio and showcase to employers.</p>
-            </div>
-            
-            <div class="feature-card">
-                <div class="feature-icon">👨‍🏫</div>
-                <h3>Expert Instructors</h3>
-                <p>Our courses are taught by industry professionals with years of practical experience.</p>
-            </div>
-            
-            <div class="feature-card">
-                <div class="feature-icon">🤝</div>
-                <h3>Community Support</h3>
-                <p>Join our vibrant community of learners and get help whenever you're stuck.</p>
-            </div>
-        </div>
-    </section>
-    
     <footer>
         <div class="footer-content">
             <div class="footer-column">
                 <h3>engagefuel.store</h3>
-                <p>Your one-stop destination for quality programming education that fuels your career growth.</p>
-                <div class="social-links">
-                    <a href="#">📱</a>
-                    <a href="#">📘</a>
-                    <a href="#">🐦</a>
-                    <a href="#">📸</a>
-                </div>
+                <p>Your one-stop destination for quality programming education.</p>
             </div>
             
             <div class="footer-column">
@@ -725,7 +525,6 @@
                     <li><a href="#">Home</a></li>
                     <li><a href="#">Courses</a></li>
                     <li><a href="#">About Us</a></li>
-                    <li><a href="#">Contact</a></li>
                 </ul>
             </div>
             
@@ -735,7 +534,6 @@
                     <li><a href="#">C++ Programming</a></li>
                     <li><a href="#">OOPs Concepts</a></li>
                     <li><a href="#">HTML5</a></li>
-                    <li><a href="#">CSS3</a></li>
                 </ul>
             </div>
             
@@ -743,9 +541,8 @@
                 <h3>Support</h3>
                 <ul class="footer-links">
                     <li><a href="#">Help Center</a></li>
-                    <li><a href="#">FAQs</a></li>
+                    <li><a href="#">Contact Us</a></li>
                     <li><a href="#">Privacy Policy</a></li>
-                    <li><a href="#">Terms of Service</a></li>
                 </ul>
             </div>
         </div>
@@ -754,124 +551,50 @@
             &copy; 2023 engagefuel.store. All rights reserved.
         </div>
     </footer>
-    
-    <div class="fab">
-        💬
-    </div>
-    
-    <script>
-        // Floating button click handler
-        const fab = document.querySelector('.fab');
-        fab.addEventListener('click', () => {
-            alert("Hello! How can we help you today?");
-        });
-        
-        // Course card animations on scroll
-        const animateCardsOnScroll = () => {
-            const cards = document.querySelectorAll('.course-card');
-            
-            cards.forEach(card => {
-                const cardPosition = card.getBoundingClientRect().top;
-                const screenPosition = window.innerHeight / 1.3;
-                
-                if(cardPosition < screenPosition) {
-                    card.classList.add('floating');
-                }
-            });
-        };
-        
-        window.addEventListener('scroll', animateCardsOnScroll);
-        
-        // Button click effects
-        const buttons = document.querySelectorAll('button');
-        buttons.forEach(button => {
-            button.addEventListener('mousedown', () => {
-                button.style.transform = 'scale(0.95)';
-            });
-            
-            button.addEventListener('mouseup', () => {
-                button.style.transform = 'scale(1)';
-            });
-            
-            button.addEventListener('mouseleave', () => {
-                button.style.transform = 'scale(1)';
-            });
-        });
-        
-        // Login/Signup button functionality
-        const loginBtn = document.querySelector('.login');
-        const signupBtn = document.querySelector('.signup');
-        
 
-        // CTA button functionality
-        const ctaButton = document.querySelector('.cta-button');
-        ctaButton.addEventListener('click', () => {
-            window.scrollTo({
-                top: document.querySelector('.courses-section').offsetTop - 100,
-                behavior: 'smooth'
-            });
-        });
-        
-        // Enroll button functionality
-        const enrollButtons = document.querySelectorAll('.enroll-btn');
-        enrollButtons.forEach(button => {
-            button.addEventListener('click', function() {
-                const courseTitle = this.closest('.course-card').querySelector('h3').textContent;
-                alert(`You've enrolled in: ${courseTitle}`);
-            });
-        });
-        
-        // Add glow effect to current section in view
-        const sections = document.querySelectorAll('section');
-        
-        const highlightSection = () => {
-            let currentSection = '';
-            
-            sections.forEach(section => {
-                const sectionTop = section.offsetTop;
-                const sectionHeight = section.clientHeight;
-                
-                if (pageYOffset >= (sectionTop - 300)) {
-                    currentSection = section.getAttribute('class');
-                }
-            });
-            
-            sections.forEach(section => {
-                section.style.boxShadow = 'none';
-                if (section.classList.contains(currentSection.split(' ')[0])) {
-                    section.style.boxShadow = '0 0 30px rgba(187, 134, 252, 0.2)';
-                }
-            });
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>
+    <script>
+        // Firebase configuration
+        const firebaseConfig = {
+            apiKey: "AIzaSyDXBI1pZlmQrpT6lQXVPTMR5TLf3-utpqc",
+            authDomain: "engagefuel-ab998.firebaseapp.com",
+            projectId: "engagefuel-ab998",
+            storageBucket: "engagefuel-ab998.appspot.com",
+            messagingSenderId: "154190808873",
+            appId: "1:154190808873:web:b87c6bbf4511da173ad938"
         };
         
-        window.addEventListener('scroll', highlightSection);
-        window.addEventListener('load', highlightSection);
-    </script>
-<script>
-    // Check authentication state
-    auth.onAuthStateChanged((user) => {
-        const authButtons = document.querySelector('.auth-buttons');
+        // Initialize Firebase
+        firebase.initializeApp(firebaseConfig);
+        const auth = firebase.auth();
         
-        if (user) {
-            // User is signed in
-            authButtons.innerHTML = `
-                <button class="login" id="logoutBtn">Logout</button>
-                <span style="color: var(--teal); margin-left: 1rem;">Welcome, ${user.email}</span>
-            `;
+        // Auth state listener
+        auth.onAuthStateChanged((user) => {
+            const body = document.body;
             
-            document.getElementById('logoutBtn').addEventListener('click', () => {
-                auth.signOut().then(() => {
-                    window.location.reload();
+            if (user) {
+                // User is logged in
+                body.classList.add('logged-in');
+                body.classList.remove('logged-out');
+                
+                // Set username
+                const displayName = user.displayName || user.email.split('@')[0];
+                document.querySelector('.username').textContent = displayName ? displayName.toUpperCase() : 'USER';
+                
+                // Logout functionality
+                document.getElementById('logoutBtn').addEventListener('click', (e) => {
+                    e.preventDefault();
+                    auth.signOut().then(() => {
+                        window.location.reload();
+                    });
                 });
-            });
-        } else {
-            // User is signed out
-            authButtons.innerHTML = `
-                <button class="login" onclick="window.location.href='login.html'">Login</button>
-                <button class="signup" onclick="window.location.href='signup.html'">Sign Up Free</button>
-            `;
-        }
-    });
-</script>
+            } else {
+                // User is logged out
+                body.classList.add('logged-out');
+                body.classList.remove('logged-in');
+            }
+        });
+    </script>
 </body>
 </html>

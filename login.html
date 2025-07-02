@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login - EngageFuel</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
     <style>
         :root {
             --primary: #FF6B6B;
@@ -18,7 +19,7 @@
             --teal: #03DAC6;
             --card-bg: #1e1e1e;
             --text-muted: #aaaaaa;
-        } 
+        }
         
         * {
             margin: 0;
@@ -26,8 +27,6 @@
             box-sizing: border-box;
             font-family: 'Poppins', sans-serif;
         }
-        
-        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap');
         
         body {
             background-color: var(--dark);
@@ -144,6 +143,12 @@
             margin-top: 0.5rem;
             font-size: 0.9rem;
             display: none;
+            background-color: rgba(3, 218, 198, 0.1);
+            padding: 10px 15px;
+            border-radius: 5px;
+            margin-bottom: 15px;
+            text-align: center;
+            border: 1px solid rgba(3, 218, 198, 0.3);
         }
     </style>
 </head>
@@ -151,6 +156,8 @@
     <div class="auth-container">
         <div class="logo">engage<span>fuel</span>.store</div>
         <h1>Welcome Back</h1>
+        
+        <div id="successMessage" class="success-message"></div>
         
         <form id="loginForm">
             <div class="form-group">
@@ -172,25 +179,23 @@
         </div>
     </div>
 
-    <!-- Firebase SDK -->
-<script src="https://www.gstatic.com/firebasejs/11.9.1/firebase-app-compat.js"></script>
-<script src="https://www.gstatic.com/firebasejs/11.9.1/firebase-firestore-compat.js"></script>
-<script src="https://www.gstatic.com/firebasejs/11.9.1/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>
     <script>
-        // Your Firebase configuration
+        // Firebase configuration
         const firebaseConfig = {
-  apiKey: "AIzaSyDXBI1pZlmQrpT6lQXVPTMR5TLf3-utpqc",
-  authDomain: "engagefuel-ab998.firebaseapp.com",
-  projectId: "engagefuel-ab998",
-  storageBucket: "engagefuel-ab998.firebasestorage.app",
-  messagingSenderId: "154190808873",
-  appId: "1:154190808873:web:b87c6bbf4511da173ad938"
-};
-
+            apiKey: "AIzaSyDXBI1pZlmQrpT6lQXVPTMR5TLf3-utpqc",
+            authDomain: "engagefuel-ab998.firebaseapp.com",
+            projectId: "engagefuel-ab998",
+            storageBucket: "engagefuel-ab998.appspot.com",
+            messagingSenderId: "154190808873",
+            appId: "1:154190808873:web:b87c6bbf4511da173ad938"
+        };
+        
         // Initialize Firebase
-         firebase.initializeApp(firebaseConfig);
+        firebase.initializeApp(firebaseConfig);
         const auth = firebase.auth();
-
+        
         // Login form handler
         document.getElementById('loginForm').addEventListener('submit', (e) => {
             e.preventDefault();
@@ -198,23 +203,33 @@
             const email = document.getElementById('email').value;
             const password = document.getElementById('password').value;
             const errorMessage = document.getElementById('errorMessage');
+            const successMessage = document.getElementById('successMessage');
+            
+            // Reset messages
+            errorMessage.style.display = 'none';
+            successMessage.style.display = 'none';
             
             auth.signInWithEmailAndPassword(email, password)
                 .then((userCredential) => {
-                    // Signed in
-                    const user = userCredential.user;
-                    window.location.href = 'index.html'; // Redirect to home page
+                    // Show success message
+                    successMessage.textContent = 'Login successful! Redirecting...';
+                    successMessage.style.display = 'block';
+                    
+                    // Redirect after delay
+                    setTimeout(() => {
+                        window.location.href = 'index.html';
+                    }, 1500);
                 })
                 .catch((error) => {
                     errorMessage.textContent = error.message;
                     errorMessage.style.display = 'block';
                 });
         });
-
+        
         // Check if user is already logged in
         auth.onAuthStateChanged((user) => {
             if (user) {
-                window.location.href = 'index.html'; // Redirect if already logged in
+                window.location.href = 'index.html';
             }
         });
     </script>
