@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -219,12 +218,12 @@
         <form id="signupForm">
             <div class="form-group">
                 <label for="name">Full Name</label>
-                <input type="text" id="name" required placeholder="Edit Name">
+                <input type="text" id="name" required placeholder="Enter your full name">
             </div>
             
             <div class="form-group">
                 <label for="email">Email</label>
-                <input type="email" id="email" required>
+                <input type="email" id="email" required placeholder="Enter your email">
             </div>
             
             <div class="form-group">
@@ -538,12 +537,12 @@
             
             <div class="form-group">
                 <label for="password">Password</label>
-                <input type="password" id="password" required>
+                <input type="password" id="password" required placeholder="Create a password">
             </div>
             
             <div class="form-group">
                 <label for="confirmPassword">Confirm Password</label>
-                <input type="password" id="confirmPassword" required>
+                <input type="password" id="confirmPassword" required placeholder="Confirm your password">
                 <div class="error-message" id="errorMessage"></div>
             </div>
             
@@ -553,7 +552,7 @@
                 </p>
                 <div class="checkbox-group">
                     <input type="checkbox" id="agreeTerms" required>
-                    <label for="agreeTerms">I have read and agree to the Terms & Conditions</label>
+                    <label for="agreeTerms">I have read and agree to the <a href="/terms.html" >Terms & Conditions</a></label>
                 </div>
             </div>
             
@@ -594,7 +593,7 @@
         });
         
         // Signup form handler
-        document.getElementById('signupForm').addEventListener('submit', (e) => {
+        document.getElementById('signupForm').addEventListener('submit', async (e) => {
             e.preventDefault();
             
             // Get form values
@@ -644,43 +643,41 @@
                 return;
             }
             
-            // Create user
-            auth.createUserWithEmailAndPassword(email, password)
-                .then((userCredential) => {
-                    const user = userCredential.user;
-                    
-                    // Save additional user data to Firestore
-                    return db.collection('users').doc(user.uid).set({
-                        name: name,
-                        email: email,
-                        gender: gender,
-                        birthDate: new Date(birthYear, birthMonth-1, birthDay),
-                        country: country,
-                        whatsapp: whatsapp,
-                        termsAgreed: agreeTerms,
-                        createdAt: firebase.firestore.FieldValue.serverTimestamp(),
-                        lastLogin: firebase.firestore.FieldValue.serverTimestamp()
-                    }).then(() => {
-                        // Update user profile with name
-                        return user.updateProfile({
-                            displayName: name
-                        });
-                    });
-                })
-                .then(() => {
-                    // Show success message
-                    successMessage.textContent = 'Account created successfully! Redirecting...';
-                    successMessage.style.display = 'block';
-                    
-                    // Redirect after delay
-                    setTimeout(() => {
-                        window.location.href = 'index.html';
-                    }, 1500);
-                })
-                .catch((error) => {
-                    errorMessage.textContent = error.message;
-                    errorMessage.style.display = 'block';
+            try {
+                // Create user with email and password
+                const userCredential = await auth.createUserWithEmailAndPassword(email, password);
+                const user = userCredential.user;
+                
+                // Update user profile with name
+                await user.updateProfile({
+                    displayName: name
                 });
+                
+                // Save additional user data to Firestore
+                await db.collection('users').doc(user.uid).set({
+                    name: name,
+                    email: email,
+                    gender: gender,
+                    birthDate: new Date(birthYear, birthMonth-1, birthDay),
+                    country: country,
+                    whatsapp: whatsapp,
+                    termsAgreed: agreeTerms,
+                    createdAt: firebase.firestore.FieldValue.serverTimestamp(),
+                    lastLogin: firebase.firestore.FieldValue.serverTimestamp()
+                });
+                
+                // Show success message
+                successMessage.textContent = 'Account created successfully! Redirecting...';
+                successMessage.style.display = 'block';
+                
+                // Redirect after delay
+                setTimeout(() => {
+                    window.location.href = 'index.html';
+                }, 1500);
+            } catch (error) {
+                errorMessage.textContent = error.message;
+                errorMessage.style.display = 'block';
+            }
         });
         
         // Check if user is already logged in
