@@ -572,7 +572,6 @@
     <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
 <script>
-    // Firebase configuration
     const firebaseConfig = {
         apiKey: "AIzaSyDXBI1pZlmQrpT6lQXVPTMR5TLf3-utpqc",
         authDomain: "engagefuel-ab998.firebaseapp.com",
@@ -581,38 +580,25 @@
         messagingSenderId: "154190808873",
         appId: "1:154190808873:web:b87c6bbf4511da173ad938"
     };
-    
-    // Initialize Firebase
+
     if (!firebase.apps.length) {
         firebase.initializeApp(firebaseConfig);
     }
+
     const auth = firebase.auth();
     const db = firebase.firestore();
-    
-// Test Firestore connection
-db.collection('test').doc('test').set({
-    test: "Firestore connection test",
-    timestamp: firebase.firestore.FieldValue.serverTimestamp()
-}).then(() => {
-    console.log("Firestore test successful - document written");
-}).catch((error) => {
-    console.error("Firestore test failed:", error);
-});
 
-    // Update country code when country changes
-    document.getElementById('country').addEventListener('change', function() {
+    document.getElementById('country').addEventListener('change', function () {
         const selectedOption = this.options[this.selectedIndex];
         if (selectedOption.value) {
             const code = selectedOption.value.split('|')[1];
             document.getElementById('countryCode').textContent = code;
         }
     });
-    
-    // Signup form handler
+
     document.getElementById('signupForm').addEventListener('submit', async (e) => {
         e.preventDefault();
-        
-        // Get form values
+
         const name = document.getElementById('name').value;
         const email = document.getElementById('email').value;
         const gender = document.getElementById('gender').value;
@@ -626,95 +612,88 @@ db.collection('test').doc('test').set({
         const password = document.getElementById('password').value;
         const confirmPassword = document.getElementById('confirmPassword').value;
         const agreeTerms = document.getElementById('agreeTerms').checked;
-        
+
         const errorMessage = document.getElementById('errorMessage');
         const successMessage = document.getElementById('successMessage');
-        
-        // Reset messages
+
         errorMessage.style.display = 'none';
         successMessage.style.display = 'none';
-        
-        // Validate form
+
         if (!agreeTerms) {
             errorMessage.textContent = "You must agree to the Terms & Conditions";
             errorMessage.style.display = 'block';
             return;
         }
-        
+
         if (password !== confirmPassword) {
             errorMessage.textContent = "Passwords don't match";
             errorMessage.style.display = 'block';
             return;
         }
-        
+
         if (password.length < 6) {
             errorMessage.textContent = "Password must be at least 6 characters";
             errorMessage.style.display = 'block';
             return;
         }
-        
+
         if (!whatsappNumber) {
             errorMessage.textContent = "WhatsApp number is required";
             errorMessage.style.display = 'block';
             return;
         }
-        
+
         try {
-            // Create user with email and password
             const userCredential = await auth.createUserWithEmailAndPassword(email, password);
             const user = userCredential.user;
-            
-            // Update user profile with name
-            await user.updateProfile({
-                displayName: name
-            });
-            
-            // Save additional user data to Firestore
+
+            await user.updateProfile({ displayName: name });
+
+            const birthDate = new Date(birthYear, birthMonth - 1, birthDay);
+
+            // Firestore write using user.uid directly
             await db.collection('users').doc(user.uid).set({
                 uid: user.uid,
-                email: email,
+                email: user.email,
                 displayName: name,
                 gender: gender,
-                birthDate: new Date(birthYear, birthMonth-1, birthDay),
+                birthDate: birthDate,
                 country: country,
                 whatsapp: whatsapp,
                 termsAgreed: agreeTerms,
                 createdAt: firebase.firestore.FieldValue.serverTimestamp(),
                 lastLogin: firebase.firestore.FieldValue.serverTimestamp()
-            }, { merge: true });
-            
-            // Show success message
+            });
+
             successMessage.textContent = 'Account created successfully! Redirecting...';
             successMessage.style.display = 'block';
-            
-            // Redirect after delay
+
             setTimeout(() => {
                 window.location.href = 'index.html';
             }, 1500);
-            
+
         } catch (error) {
             console.error("Signup error:", error);
             errorMessage.textContent = error.message;
             errorMessage.style.display = 'block';
-            
-            // If user was created but Firestore failed, delete the user
+
+            // Optional: rollback auth user creation
             if (auth.currentUser) {
                 try {
                     await auth.currentUser.delete();
-                    console.log("Rolled back user creation due to Firestore error");
-                } catch (deleteError) {
-                    console.error("Error deleting user:", deleteError);
+                } catch (deleteErr) {
+                    console.error("Failed to delete user after Firestore failure:", deleteErr);
                 }
             }
         }
     });
-    
-    // Check if user is already logged in
+
     auth.onAuthStateChanged((user) => {
         if (user) {
             window.location.href = 'index.html';
         }
     });
 </script>
+
 </body>
 </html>
