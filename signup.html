@@ -584,17 +584,8 @@
     if (!firebase.apps.length) {
         firebase.initializeApp(firebaseConfig);
     }
-
     const auth = firebase.auth();
     const db = firebase.firestore();
-
-    document.getElementById('country').addEventListener('change', function () {
-        const selectedOption = this.options[this.selectedIndex];
-        if (selectedOption.value) {
-            const code = selectedOption.value.split('|')[1];
-            document.getElementById('countryCode').textContent = code;
-        }
-    });
 
     document.getElementById('signupForm').addEventListener('submit', async (e) => {
         e.preventDefault();
@@ -644,26 +635,28 @@
         }
 
         try {
+            console.log("Creating user...");
             const userCredential = await auth.createUserWithEmailAndPassword(email, password);
             const user = userCredential.user;
+            console.log("User created:", user.uid);
 
             await user.updateProfile({ displayName: name });
 
-            const birthDate = new Date(birthYear, birthMonth - 1, birthDay);
-
-            // Firestore write using user.uid directly
-            await db.collection('users').doc(user.uid).set({
+            const userDoc = {
                 uid: user.uid,
-                email: user.email,
+                email: email,
                 displayName: name,
                 gender: gender,
-                birthDate: birthDate,
+                birthDate: new Date(birthYear, birthMonth - 1, birthDay),
                 country: country,
                 whatsapp: whatsapp,
                 termsAgreed: agreeTerms,
                 createdAt: firebase.firestore.FieldValue.serverTimestamp(),
                 lastLogin: firebase.firestore.FieldValue.serverTimestamp()
-            });
+            };
+
+            console.log("Saving user to Firestore:", userDoc);
+            await db.collection('users').doc(user.uid).set(userDoc, { merge: true });
 
             successMessage.textContent = 'Account created successfully! Redirecting...';
             successMessage.style.display = 'block';
@@ -677,12 +670,12 @@
             errorMessage.textContent = error.message;
             errorMessage.style.display = 'block';
 
-            // Optional: rollback auth user creation
             if (auth.currentUser) {
                 try {
                     await auth.currentUser.delete();
-                } catch (deleteErr) {
-                    console.error("Failed to delete user after Firestore failure:", deleteErr);
+                    console.log("Rolled back user creation.");
+                } catch (deleteError) {
+                    console.error("User deletion failed:", deleteError);
                 }
             }
         }
