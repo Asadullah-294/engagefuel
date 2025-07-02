@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Up - EngageFuel</title>
+    <style>
+        :root {
+            --primary: #FF6B6B;
+            --secondary: #4ECDC4;
+            --accent: #FFE66D;
+            --dark: #121212;
+            --darker: #0a0a0a;
+            --light: #e0e0e0;
+            --lighter: #f5f5f5;
+            --purple: #BB86FC;
+            --orange: #FF9F1C;
+            --teal: #03DAC6;
+            --card-bg: #1e1e1e;
+            --text-muted: #aaaaaa;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+        
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap');
+        
+        body {
+            background-color: var(--dark);
+            color: var(--light);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 2rem;
+        }
+        
+        .auth-container {
+            background: var(--card-bg);
+            border-radius: 15px;
+            width: 100%;
+            max-width: 500px;
+            padding: 2.5rem;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .logo {
+            text-align: center;
+            margin-bottom: 1.5rem;
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--teal);
+        }
+        
+        .logo span {
+            color: var(--purple);
+        }
+        
+        h1 {
+            text-align: center;
+            margin-bottom: 1.5rem;
+            background: linear-gradient(to right, var(--teal), var(--purple));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+        
+        .form-group {
+            margin-bottom: 1.2rem;
+        }
+        
+        label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: var(--lighter);
+            font-size: 0.9rem;
+        }
+        
+        input, select {
+            width: 100%;
+            padding: 0.8rem 1rem;
+            border-radius: 8px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            background: rgba(255, 255, 255, 0.05);
+            color: var(--light);
+            font-size: 1rem;
+            transition: all 0.3s;
+        }
+        
+        input:focus, select:focus {
+            outline: none;
+            border-color: var(--purple);
+            box-shadow: 0 0 0 2px rgba(187, 134, 252, 0.3);
+        }
+        
+        .date-selectors {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 0.8rem;
+        }
+        
+        .terms-container {
+            margin: 1.5rem 0;
+            padding: 1rem;
+            background: rgba(255, 255, 255, 0.03);
+            border-radius: 8px;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+        
+        .terms-text {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            margin-bottom: 1rem;
+            line-height: 1.5;
+        }
+        
+        .checkbox-group {
+            display: flex;
+            align-items: center;
+            margin-top: 0.5rem;
+        }
+        
+        .checkbox-group input {
+            width: auto;
+            margin-right: 0.8rem;
+        }
+        
+        .checkbox-group label {
+            margin-bottom: 0;
+            font-size: 0.9rem;
+        }
+        
+        .auth-btn {
+            width: 100%;
+            padding: 0.8rem;
+            border-radius: 8px;
+            border: none;
+            background: linear-gradient(to right, var(--teal), var(--purple));
+            color: var(--dark);
+            font-weight: 600;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.3s;
+            margin-top: 1rem;
+        }
+        
+        .auth-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(187, 134, 252, 0.4);
+        }
+        
+        .auth-footer {
+            text-align: center;
+            margin-top: 1.5rem;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+        
+        .auth-footer a {
+            color: var(--teal);
+            text-decoration: none;
+            transition: all 0.3s;
+        }
+        
+        .auth-footer a:hover {
+            text-decoration: underline;
+        }
+        
+        .error-message {
+            color: var(--primary);
+            margin-top: 0.5rem;
+            font-size: 0.8rem;
+            display: none;
+        }
+        
+        .success-message {
+            color: var(--teal);
+            margin-top: 0.5rem;
+            font-size: 0.8rem;
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="auth-container">
+        <div class="logo">engage<span>fuel</span>.store</div>
+        <h1>Create Account</h1>
+        
+        <form id="signupForm">
+            <div class="form-group">
+                <label for="name">Full Name</label>
+                <input type="text" id="name" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="email">Email</label>
+                <input type="email" id="email" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="gender">Select Gender</label>
+                <select id="gender" required>
+                    <option value="" disabled selected>Select your gender</option>
+                    <option value="male">Male</option>
+                    <option value="female">Female</option>
+                    <option value="other">Other</option>
+                    <option value="prefer-not-to-say">Prefer not to say</option>
+                </select>
+            </div>
+            
+            <div class="form-group">
+                <label>Enter Your Birth Date</label>
+                <div class="date-selectors">
+                    <div>
+                        <select id="birthDay" required>
+                            <option value="" disabled selected>Day</option>
+                            <!-- Days 1-31 -->
+                            <script>
+                                for(let i = 1; i <= 31; i++) {
+                                    document.write(`<option value="${i}">${i}</option>`);
+                                }
+                            </script>
+                        </select>
+                    </div>
+                    <div>
+                        <select id="birthMonth" required>
+                            <option value="" disabled selected>Month</option>
+                            <option value="1">January</option>
+                            <option value="2">February</option>
+                            <option value="3">March</option>
+                            <option value="4">April</option>
+                            <option value="5">May</option>
+                            <option value="6">June</option>
+                            <option value="7">July</option>
+                            <option value="8">August</option>
+                            <option value="9">September</option>
+                            <option value="10">October</option>
+                            <option value="11">November</option>
+                            <option value="12">December</option>
+                        </select>
+                    </div>
+                    <div>
+                        <select id="birthYear" required>
+                            <option value="" disabled selected>Year</option>
+                            <!-- Years from current year minus 100 to current year minus 13 -->
+                            <script>
+                                const currentYear = new Date().getFullYear();
+                                for(let i = currentYear - 13; i >= currentYear - 100; i--) {
+                                    document.write(`<option value="${i}">${i}</option>`);
+                                }
+                            </script>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="form-group">
+                <label for="country">Country</label>
+                <select id="country" required>
+                    <option value="" disabled selected>Select your country</option>
+                    <option value="US">United States</option>
+                    <option value="IN">India</option>
+                    <option value="UK">United Kingdom</option>
+                    <option value="CA">Canada</option>
+                    <option value="AU">Australia</option>
+                    <!-- Add more countries as needed -->
+                </select>
+            </div>
+            
+            <div class="form-group">
+                <label for="whatsapp">Enter WhatsApp Number</label>
+                <input type="tel" id="whatsapp" placeholder="Include country code">
+            </div>
+            
+            <div class="form-group">
+                <label for="password">Password</label>
+                <input type="password" id="password" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="confirmPassword">Confirm Password</label>
+                <input type="password" id="confirmPassword" required>
+                <div class="error-message" id="errorMessage"></div>
+                <div class="success-message" id="successMessage"></div>
+            </div>
+            
+            <div class="terms-container">
+                <p class="terms-text">
+                    By typing your full name below, you agree that it serves as your digital signature 
+                    and confirm that you accept our Terms & Conditions.
+                </p>
+                <div class="form-group">
+                    <label for="signature">Signature (Type Full Name)</label>
+                    <input type="text" id="signature" required>
+                </div>
+                <div class="checkbox-group">
+                    <input type="checkbox" id="agreeTerms" required>
+                    <label for="agreeTerms">I have read and agree to the Terms & Conditions</label>
+                </div>
+            </div>
+            
+            <button type="submit" class="auth-btn">SUBMIT</button>
+        </form>
+        
+        <div class="auth-footer">
+            Already have an account? <a href="login.html">Login</a>
+        </div>
+    </div>
+
+    <!-- Firebase SDK -->
+    <script src="https://www.gstatic.com/firebasejs/9.6.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.0/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.0/firebase-firestore-compat.js"></script>
+    
+    <script>
+        // Your Firebase configuration
+        const firebaseConfig = {
+            apiKey: "YOUR_API_KEY",
+            authDomain: "YOUR_AUTH_DOMAIN",
+            projectId: "YOUR_PROJECT_ID",
+            storageBucket: "YOUR_STORAGE_BUCKET",
+            messagingSenderId: "YOUR_MESSAGING_SENDER_ID",
+            appId: "YOUR_APP_ID"
+        };
+
+        // Initialize Firebase
+        firebase.initializeApp(firebaseConfig);
+        const auth = firebase.auth();
+        const db = firebase.firestore();
+
+        // Signup form handler
+        document.getElementById('signupForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            
+            // Get form values
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            const gender = document.getElementById('gender').value;
+            const birthDay = document.getElementById('birthDay').value;
+            const birthMonth = document.getElementById('birthMonth').value;
+            const birthYear = document.getElementById('birthYear').value;
+            const country = document.getElementById('country').value;
+            const whatsapp = document.getElementById('whatsapp').value;
+            const password = document.getElementById('password').value;
+            const confirmPassword = document.getElementById('confirmPassword').value;
+            const signature = document.getElementById('signature').value;
+            const agreeTerms = document.getElementById('agreeTerms').checked;
+            
+            const errorMessage = document.getElementById('errorMessage');
+            const successMessage = document.getElementById('successMessage');
+            
+            // Reset messages
+            errorMessage.style.display = 'none';
+            successMessage.style.display = 'none';
+            
+            // Validate form
+            if (!agreeTerms) {
+                errorMessage.textContent = "You must agree to the Terms & Conditions";
+                errorMessage.style.display = 'block';
+                return;
+            }
+            
+            if (name !== signature) {
+                errorMessage.textContent = "Signature must match your full name";
+                errorMessage.style.display = 'block';
+                return;
+            }
+            
+            if (password !== confirmPassword) {
+                errorMessage.textContent = "Passwords don't match";
+                errorMessage.style.display = 'block';
+                return;
+            }
+            
+            if (password.length < 6) {
+                errorMessage.textContent = "Password must be at least 6 characters";
+                errorMessage.style.display = 'block';
+                return;
+            }
+            
+            try {
+                // Create user with email and password
+                const userCredential = await auth.createUserWithEmailAndPassword(email, password);
+                const user = userCredential.user;
+                
+                // Save additional user data to Firestore
+                await db.collection('users').doc(user.uid).set({
+                    name,
+                    email,
+                    gender,
+                    birthDate: new Date(birthYear, birthMonth - 1, birthDay),
+                    country,
+                    whatsapp,
+                    signature,
+                    termsAgreed: true,
+                    termsAgreedAt: new Date(),
+                    createdAt: new Date()
+                });
+                
+                successMessage.textContent = "Account created successfully! Redirecting...";
+                successMessage.style.display = 'block';
+                
+                // Redirect after a short delay
+                setTimeout(() => {
+                    window.location.href = 'index.html';
+                }, 1500);
+            } catch (error) {
+                errorMessage.textContent = error.message;
+                errorMessage.style.display = 'block';
+                
+                // If user creation failed but Firestore document was created, delete it
+                if (auth.currentUser) {
+                    await db.collection('users').doc(auth.currentUser.uid).delete();
+                    await auth.currentUser.delete();
+                }
+            }
+        });
+
+        // Check if user is already logged in
+        auth.onAuthStateChanged((user) => {
+            if (user) {
+                window.location.href = 'index.html'; // Redirect if already logged in
+            }
+        });
+    </script>
+</body>
+</html>
