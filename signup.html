@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -548,14 +549,8 @@
             
             <div class="terms-container">
                 <p class="terms-text">
-                    By typing your full name below, you agree that it serves as
-                    your digital signature and confirm that you accept our Terms &
-                    Conditions
+                    By creating an account, you confirm that you accept our Terms & Conditions
                 </p>
-                <div class="form-group">
-                    <label for="signature">Signature (Type Full Name)</label>
-                    <input type="text" id="signature" required>
-                </div>
                 <div class="checkbox-group">
                     <input type="checkbox" id="agreeTerms" required>
                     <label for="agreeTerms">I have read and agree to the Terms & Conditions</label>
@@ -572,6 +567,7 @@
 
     <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
     <script>
         // Firebase configuration
         const firebaseConfig = {
@@ -586,6 +582,7 @@
         // Initialize Firebase
         firebase.initializeApp(firebaseConfig);
         const auth = firebase.auth();
+        const db = firebase.firestore();
         
         // Update country code when country changes
         document.getElementById('country').addEventListener('change', function() {
@@ -613,7 +610,6 @@
             const whatsapp = countryCode + whatsappNumber;
             const password = document.getElementById('password').value;
             const confirmPassword = document.getElementById('confirmPassword').value;
-            const signature = document.getElementById('signature').value;
             const agreeTerms = document.getElementById('agreeTerms').checked;
             
             const errorMessage = document.getElementById('errorMessage');
@@ -626,12 +622,6 @@
             // Validate form
             if (!agreeTerms) {
                 errorMessage.textContent = "You must agree to the Terms & Conditions";
-                errorMessage.style.display = 'block';
-                return;
-            }
-            
-            if (name !== signature) {
-                errorMessage.textContent = "Signature must match your full name";
                 errorMessage.style.display = 'block';
                 return;
             }
@@ -657,19 +647,35 @@
             // Create user
             auth.createUserWithEmailAndPassword(email, password)
                 .then((userCredential) => {
-                    // Update user profile with name
-                    return userCredential.user.updateProfile({
-                        displayName: name
+                    const user = userCredential.user;
+                    
+                    // Save additional user data to Firestore
+                    return db.collection('users').doc(user.uid).set({
+                        name: name,
+                        email: email,
+                        gender: gender,
+                        birthDate: new Date(birthYear, birthMonth-1, birthDay),
+                        country: country,
+                        whatsapp: whatsapp,
+                        termsAgreed: agreeTerms,
+                        createdAt: firebase.firestore.FieldValue.serverTimestamp(),
+                        lastLogin: firebase.firestore.FieldValue.serverTimestamp()
                     }).then(() => {
-                        // Show success message
-                        successMessage.textContent = 'Account created successfully! Redirecting...';
-                        successMessage.style.display = 'block';
-                        
-                        // Redirect after delay
-                        setTimeout(() => {
-                            window.location.href = 'index.html';
-                        }, 1500);
+                        // Update user profile with name
+                        return user.updateProfile({
+                            displayName: name
+                        });
                     });
+                })
+                .then(() => {
+                    // Show success message
+                    successMessage.textContent = 'Account created successfully! Redirecting...';
+                    successMessage.style.display = 'block';
+                    
+                    // Redirect after delay
+                    setTimeout(() => {
+                        window.location.href = 'index.html';
+                    }, 1500);
                 })
                 .catch((error) => {
                     errorMessage.textContent = error.message;
