@@ -5,12 +5,25 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>EngageFuel - Learn Programming</title>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet" />
- <meta http-equiv="Content-Security-Policy"
+  <meta http-equiv="Content-Security-Policy"
       content="script-src 'self' https://www.gstatic.com https://www.googleapis.com 'unsafe-eval'; object-src 'none';">
-
   <link rel="stylesheet" href="style.css" />
 </head>
 <body class="logged-out">
+  <!-- Preloader -->
+  <div class="preloader">
+    <div class="preloader-content">
+      <div class="preloader-logo">
+        engage<span>fuel</span>.store
+      </div>
+      <div class="preloader-spinner">
+        <div class="spinner-circle"></div>
+        <div class="spinner-circle"></div>
+        <div class="spinner-circle"></div>
+      </div>
+    </div>
+  </div>
+
   <header>
     <nav class="navbar">
       <div class="logo">
@@ -38,6 +51,31 @@
         </div>
       </div>
     </nav>
+
+    <!-- Mobile Navigation -->
+    <div class="mobile-nav">
+      <div class="mobile-nav-header">
+        <div class="logo">
+          engage<span>fuel</span>.store
+        </div>
+        <div class="mobile-menu-btn" id="mobileMenuBtn">
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+      </div>
+      <div class="mobile-nav-links" id="mobileNavLinks">
+        <ul>
+          <li><a href="#">Home</a></li>
+          <li><a href="#">Courses</a></li>
+          <li><a href="#">About</a></li>
+          <li><a href="#">Blog</a></li>
+          <li><a href="#">Contact</a></li>
+          <li><a href="login.html">Login</a></li>
+          <li><a href="signup.html">Sign Up Free</a></li>
+        </ul>
+      </div>
+    </div>
   </header>
 
   <section class="hero">
@@ -93,6 +131,16 @@
           <button class="enroll-btn">Enroll Now</button>
         </div>
       </div>
+      <div class="course-card">
+        <div class="course-header" style="background: linear-gradient(135deg, #3776AB, #306998);">
+          <a href="/python-course.html" >Python Basics</a>
+        </div>
+        <div class="course-content">
+           <a href="/python-course.html" ><h3>Python Programming Fundamentals</a></h3>
+          <p>Learn Python from scratch with hands-on exercises. Master variables, loops, functions, and basic data structures.</p>
+          <a href="/python-course.html" ><button class="enroll-btn">Enroll Now</a></button>
+        </div>
+      </div>
     </div>
   </section>
 
@@ -116,6 +164,7 @@
           <li><a href="#">C++ Programming</a></li>
           <li><a href="#">OOPs Concepts</a></li>
           <li><a href="#">HTML5</a></li>
+          <li><a href="/python-course.html">Python Basics</a></li>
         </ul>
       </div>
       <div class="footer-column">
