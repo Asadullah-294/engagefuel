@@ -1,56 +1,41 @@
-// Firebase modules
+// Import Firebase modules
 import { initializeApp } from "https://www.gstatic.com/firebasejs/9.22.2/firebase-app.js";
 import { getAuth, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/9.22.2/firebase-auth.js";
 
-// Firebase config
+// Firebase configuration
 const firebaseConfig = {
-  apiKey: "AIzaSyDXBI1pZlmQrpT6lQXVPTMR5TLf3-utpqc",
-  authDomain: "engagefuel-ab998.firebaseapp.com",
-  projectId: "engagefuel-ab998",
-  storageBucket: "engagefuel-ab998.appspot.com",
-  messagingSenderId: "154190808873",
-  appId: "1:154190808873:web:b87c6bbf4511da173ad938"
+    apiKey: "AIzaSyDXBI1pZlmQrpT6lQXVPTMR5TLf3-utpqc",
+    authDomain: "engagefuel-ab998.firebaseapp.com",
+    projectId: "engagefuel-ab998",
+    storageBucket: "engagefuel-ab998.appspot.com",
+    messagingSenderId: "154190808873",
+    appId: "1:154190808873:web:b87c6bbf4511da173ad938"
 };
 
-// Init Firebase
+// Initialize Firebase
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 
-// Auth State
+// Auth state listener
 onAuthStateChanged(auth, (user) => {
-  const body = document.body;
-  if (user) {
-    body.classList.add('logged-in');
-    body.classList.remove('logged-out');
+    const body = document.body;
 
-    const displayName = user.displayName || user.email.split('@')[0];
-    document.querySelector('.username').textContent = displayName ? displayName.toUpperCase() : 'USER';
+    if (user) {
+        body.classList.add('logged-in');
+        body.classList.remove('logged-out');
 
-    document.getElementById('logoutBtn').addEventListener('click', (e) => {
-      e.preventDefault();
-      signOut(auth).then(() => {
-        window.location.reload();
-      });
-    });
+        const displayName = user.displayName || user.email.split('@')[0];
+        document.querySelector('.username').textContent = displayName ? displayName.toUpperCase() : 'USER';
 
-  } else {
-    body.classList.add('logged-out');
-    body.classList.remove('logged-in');
-  }
-});
+        document.getElementById('logoutBtn').addEventListener('click', (e) => {
+            e.preventDefault();
+            signOut(auth).then(() => {
+                window.location.reload();
+            });
+        });
 
-// Preloader Hide
-window.addEventListener("load", () => {
-  const preloader = document.getElementById("preloader");
-  if (preloader) {
-    preloader.style.display = "none";
-  }
-});
-
-// Navbar Toggle for Mobile
-const hamburger = document.getElementById('hamburger');
-const navLinks = document.querySelector('.nav-links');
-
-hamburger.addEventListener('click', () => {
-  navLinks.classList.toggle('show');
+    } else {
+        body.classList.add('logged-out');
+        body.classList.remove('logged-in');
+    }
 });
