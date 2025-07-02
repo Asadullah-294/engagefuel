@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>OOP Concepts | EngageFuel</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet" />
+  <meta http-equiv="Content-Security-Policy"
+      content="script-src 'self' https://www.gstatic.com https://www.googleapis.com 'unsafe-eval'; object-src 'none';">
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body class="logged-out">
+  <!-- Preloader -->
+  <div class="preloader">
+    <div class="preloader-content">
+      <div class="preloader-logo">
+        engage<span>fuel</span>.store
+      </div>
+      <div class="preloader-spinner">
+        <div class="spinner-circle"></div>
+        <div class="spinner-circle"></div>
+        <div class="spinner-circle"></div>
+      </div>
+    </div>
+  </div>
+
+  <header>
+    <nav class="navbar">
+      <div class="logo">
+        engage<span>fuel</span>.store
+      </div>
+      <ul class="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="index.html#courses">Courses</a></li>
+        <li><a href="#">About</a></li>
+        <li><a href="#">Blog</a></li>
+        <li><a href="#">Contact</a></li>
+      </ul>
+      <div class="auth-buttons" id="authButtons">
+        <a href="login.html"><button class="login">Login</button></a>
+        <a href="signup.html"><button class="signup">Sign Up Free</button></a>
+      </div>
+      <div class="user-profile" id="userProfile">
+        <div class="user-dropdown">
+          <span class="username">USERNAME</span>
+          <div class="dropdown-content">
+            <a href="#">Reward History</a>
+            <a href="#">Support</a>
+            <a href="#" id="logoutBtn">Logout</a>
+          </div>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Mobile Navigation -->
+    <div class="mobile-nav">
+      <div class="mobile-nav-header">
+        <div class="logo">
+          engage<span>fuel</span>.store
+        </div>
+        <div class="mobile-menu-btn" id="mobileMenuBtn">
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+      </div>
+      <div class="mobile-nav-links" id="mobileNavLinks">
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="index.html#courses">Courses</a></li>
+          <li><a href="#">About</a></li>
+          <li><a href="#">Blog</a></li>
+          <li><a href="#">Contact</a></li>
+          <li><a href="login.html">Login</a></li>
+          <li><a href="signup.html">Sign Up Free</a></li>
+        </ul>
+      </div>
+    </div>
+  </header>
+
+  <section class="course-hero" style="background: linear-gradient(135deg, #6a1b9a, #9c27b0);">
+    <div class="course-hero-content">
+      <h1>Object-Oriented Programming Mastery</h1>
+      <p>Master the four pillars of OOP and build robust, maintainable software systems used by top tech companies worldwide</p>
+      <button class="cta-button" id="enrollCta">Enroll Now</button>
+    </div>
+  </section>
+
+  <section class="course-details">
+    <div class="container">
+      <div class="course-info">
+        <div class="course-highlights">
+          <h2>Why Learn OOP?</h2>
+          <ul>
+            <li>Industry-standard paradigm used in 90% of modern software</li>
+            <li>Write cleaner, more maintainable and scalable code</li>
+            <li>Essential for Java, C++, Python, and C# development</li>
+            <li>Foundation for design patterns and enterprise applications</li>
+            <li>Highly valued skill in technical interviews</li>
+          </ul>
+          
+          <h2 style="margin-top: 2rem;">Course Highlights</h2>
+          <ul>
+            <li>50+ practical OOP exercises</li>
+            <li>8 real-world projects including inventory systems</li>
+            <li>Four pillars of OOP with hands-on examples</li>
+            <li>Certificate of completion</li>
+            <li>Expert code reviews</li>
+          </ul>
+        </div>
+        <div class="course-stats">
+          <div class="stat-card">
+            <h3>4.9</h3>
+            <p>Average Rating</p>
+          </div>
+          <div class="stat-card">
+            <h3>35+</h3>
+            <p>Hours of Content</p>
+          </div>
+          <div class="stat-card">
+            <h3>8</h3>
+            <p>Real Projects</p>
+          </div>
+          <div class="stat-card">
+            <h3>6</h3>
+            <p>Weeks Duration</p>
+          </div>
+          <div class="stat-card">
+            <h3>100%</h3>
+            <p>Online Access</p>
+          </div>
+          <div class="stat-card">
+            <h3>600+</h3>
+            <p>Students Enrolled</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="course-curriculum">
+        <h2>Course Curriculum</h2>
+        <div class="modules">
+          <div class="module">
+            <h3>Module 1: OOP Fundamentals</h3>
+            <ul>
+              <li>Introduction to Object-Oriented Programming</li>
+              <li>Classes and Objects</li>
+              <li>Attributes and Methods</li>
+              <li>Constructors and Destructors</li>
+              <li>Class vs Instance Members</li>
+            </ul>
+          </div>
+          <div class="module">
+            <h3>Module 2: Encapsulation</h3>
+            <ul>
+              <li>Access Modifiers (Public, Private, Protected)</li>
+              <li>Getters and Setters</li>
+              <li>Data Hiding Principles</li>
+              <li>Property Decorators</li>
+              <li>Project: Bank Account System</li>
+            </ul>
+          </div>
+          <div class="module">
+            <h3>Module 3: Inheritance</h3>
+            <ul>
+              <li>Superclass and Subclass Relationships</li>
+              <li>Method Overriding</li>
+              <li>Multiple Inheritance</li>
+              <li>Abstract Classes</li>
+              <li>Project: Vehicle Hierarchy</li>
+            </ul>
+          </div>
+          <div class="module">
+            <h3>Module 4: Polymorphism</h3>
+            <ul>
+              <li>Method Overloading</li>
+              <li>Dynamic Method Dispatch</li>
+              <li>Interface Implementation</li>
+              <li>Duck Typing</li>
+              <li>Project: Shape Calculator</li>
+            </ul>
+          </div>
+          <div class="module">
+            <h3>Module 5: Abstraction</h3>
+            <ul>
+              <li>Abstract Methods and Classes</li>
+              <li>Interfaces vs Abstract Classes</li>
+              <li>Designing Abstract Systems</li>
+              <li>Project: Payment Gateway Interface</li>
+            </ul>
+          </div>
+          <div class="module">
+            <h3>Module 6: Exception Handling</h3>
+            <ul>
+              <li>Try-Catch Blocks</li>
+              <li>Custom Exceptions</li>
+              <li>Exception Propagation</li>
+              <li>Checked vs Unchecked Exceptions</li>
+              <li>Project: Robust File Processor</li>
+            </ul>
+          </div>
+          <div class="module">
+            <h3>Module 7: File Handling</h3>
+            <ul>
+              <li>Reading/Writing Text Files</li>
+              <li>Serialization/Deserialization</li>
+              <li>Working with CSV and JSON</li>
+              <li>Project: Student Records System</li>
+            </ul>
+          </div>
+          <div class="module">
+            <h3>Module 8: Final Projects</h3>
+            <ul>
+              <li>Library Management System</li>
+              <li>E-commerce Product Catalog</li>
+              <li>Certificate Exam</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="testimonials">
+    <h2>What Our OOP Students Say</h2>
+    <div class="testimonial-cards">
+      <div class="testimonial-card">
+        <p>"The OOP course transformed how I write code. I went from writing spaghetti code to designing proper class hierarchies that my team actually appreciates!"</p>
+        <div class="student-info">
+          <h4>Emily Rodriguez</h4>
+          <p>Junior Developer</p>
+        </div>
+      </div>
+      <div class="testimonial-card">
+        <p>"Finally understand polymorphism and inheritance properly! The vehicle hierarchy project made everything click for me."</p>
+        <div class="student-info">
+          <h4>James Wilson</h4>
+          <p>Computer Science Student</p>
+        </div>
+      </div>
+      <div class="testimonial-card">
+        <p>"As a self-taught programmer, I was missing the OOP fundamentals. This course filled those gaps and helped me land my first developer job."</p>
+        <div class="student-info">
+          <h4>Robert Zhang</h4>
+          <p>Software Developer</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="course-cta">
+    <div class="cta-content">
+      <h2>Master Object-Oriented Programming</h2>
+      <p>Join our comprehensive OOP course and gain the skills needed for professional software development.</p>
+      <button class="cta-button" id="finalEnrollBtn">Enroll Now - $54.99</button>
+      <p class="money-back">30-day money-back guarantee</p>
+      <div class="bonus-offer">
+        <p>🔥 <strong>Bonus:</strong> Get our "OOP Design Patterns Cheat Sheet" when you enroll today!</p>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="footer-content">
+      <div class="footer-column">
+        <h3>engagefuel.store</h3>
+        <p>Your one-stop destination for quality programming education.</p>
+      </div>
+      <div class="footer-column">
+        <h3>Quick Links</h3>
+        <ul class="footer-links">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="index.html#courses">Courses</a></li>
+          <li><a href="#">About Us</a></li>
+        </ul>
+      </div>
+      <div class="footer-column">
+        <h3>Courses</h3>
+        <ul class="footer-links">
+          <li><a href="python-course.html">Python Basics</a></li>
+          <li><a href="cpp-course.html">C++ Programming</a></li>
+          <li><a href="oop-course.html">OOP Concepts</a></li>
+        </ul>
+      </div>
+      <div class="footer-column">
+        <h3>Support</h3>
+        <ul class="footer-links">
+          <li><a href="#">Help Center</a></li>
+          <li><a href="#">Contact Us</a></li>
+          <li><a href="#">Privacy Policy</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="copyright">
+      &copy; 2023 engagefuel.store. All rights reserved.
+    </div>
+  </footer>
+
+  <script type="module" src="script.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const enrollButtons = document.querySelectorAll('#enrollCta, #finalEnrollBtn');
+      enrollButtons.forEach(button => {
+        button.addEventListener('click', () => {
+          const isLoggedIn = document.body.classList.contains('logged-in');
+          if (isLoggedIn) {
+            window.location.href = 'checkout.html?course=oop';
+          } else {
+            window.location.href = 'signup.html?course=oop';
+          }
+        });
+      });
+    });
+  </script>
+</body>
+</html>

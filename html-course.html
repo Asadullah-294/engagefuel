@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>HTML Fundamentals | EngageFuel</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet" />
+  <meta http-equiv="Content-Security-Policy"
+      content="script-src 'self' https://www.gstatic.com https://www.googleapis.com 'unsafe-eval'; object-src 'none';">
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body class="logged-out">
+  <!-- Preloader -->
+  <div class="preloader">
+    <div class="preloader-content">
+      <div class="preloader-logo">
+        engage<span>fuel</span>.store
+      </div>
+      <div class="preloader-spinner">
+        <div class="spinner-circle"></div>
+        <div class="spinner-circle"></div>
+        <div class="spinner-circle"></div>
+      </div>
+    </div>
+  </div>
+
+  <header>
+    <nav class="navbar">
+      <div class="logo">
+        engage<span>fuel</span>.store
+      </div>
+      <ul class="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="index.html#courses">Courses</a></li>
+        <li><a href="#">About</a></li>
+        <li><a href="#">Blog</a></li>
+        <li><a href="#">Contact</a></li>
+      </ul>
+      <div class="auth-buttons" id="authButtons">
+        <a href="login.html"><button class="login">Login</button></a>
+        <a href="signup.html"><button class="signup">Sign Up Free</button></a>
+      </div>
+      <div class="user-profile" id="userProfile">
+        <div class="user-dropdown">
+          <span class="username">USERNAME</span>
+          <div class="dropdown-content">
+            <a href="#">Reward History</a>
+            <a href="#">Support</a>
+            <a href="#" id="logoutBtn">Logout</a>
+          </div>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Mobile Navigation -->
+    <div class="mobile-nav">
+      <div class="mobile-nav-header">
+        <div class="logo">
+          engage<span>fuel</span>.store
+        </div>
+        <div class="mobile-menu-btn" id="mobileMenuBtn">
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+      </div>
+      <div class="mobile-nav-links" id="mobileNavLinks">
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="index.html#courses">Courses</a></li>
+          <li><a href="#">About</a></li>
+          <li><a href="#">Blog</a></li>
+          <li><a href="#">Contact</a></li>
+          <li><a href="login.html">Login</a></li>
+          <li><a href="signup.html">Sign Up Free</a></li>
+        </ul>
+      </div>
+    </div>
+  </header>
+
+  <section class="course-hero" style="background: linear-gradient(135deg, #e44d26, #f16529);">
+    <div class="course-hero-content">
+      <h1>HTML5 Complete Course</h1>
+      <p>Master the foundation of web development with modern HTML5 - the building blocks of every website you visit</p>
+      <button class="cta-button" id="enrollCta">Enroll Now</button>
+    </div>
+  </section>
+
+  <section class="course-details">
+    <div class="container">
+      <div class="course-info">
+        <div class="course-highlights">
+          <h2>Why Learn HTML?</h2>
+          <ul>
+            <li>Essential skill for all web developers and designers</li>
+            <li>Foundation for learning CSS and JavaScript</li>
+            <li>Used by 100% of websites on the internet</li>
+            <li>Easy to learn with immediate visual results</li>
+            <li>High demand for HTML5 skills in the job market</li>
+          </ul>
+          
+          <h2 style="margin-top: 2rem;">Course Highlights</h2>
+          <ul>
+            <li>100+ hands-on coding exercises</li>
+            <li>12 real-world projects</li>
+            <li>Modern HTML5 and semantic markup</li>
+            <li>Certificate of completion</li>
+            <li>24/7 mentor support</li>
+          </ul>
+        </div>
+        <div class="course-stats">
+          <div class="stat-card">
+            <h3>4.8</h3>
+            <p>Average Rating</p>
+          </div>
+          <div class="stat-card">
+            <h3>25+</h3>
+            <p>Hours of Content</p>
+          </div>
+          <div class="stat-card">
+            <h3>12</h3>
+            <p>Real Projects</p>
+          </div>
+          <div class="stat-card">
+            <h3>4</h3>
+            <p>Weeks Duration</p>
+          </div>
+          <div class="stat-card">
+            <h3>100%</h3>
+            <p>Online Access</p>
+          </div>
+          <div class="stat-card">
+            <h3>1200+</h3>
+            <p>Students Enrolled</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="course-curriculum">
+        <h2>Course Curriculum</h2>
+        <div class="modules">
+          <div class="module">
+            <h3>Module 1: HTML Fundamentals</h3>
+            <ul>
+              <li>HTML Document Structure</li>
+              <li>Basic Tags and Elements</li>
+              <li>Headings and Paragraphs</li>
+              <li>Text Formatting</li>
+              <li>Comments and Best Practices</li>
+            </ul>
+          </div>
+          <div class="module">
+            <h3>Module 2: Links and Navigation</h3>
+            <ul>
+              <li>Anchor Tags and Hyperlinks</li>
+              <li>Linking to External Resources</li>
+              <li>Navigation Menus</li>
+              <li>Bookmarks and Page Anchors</li>
+              <li>Project: Multi-page Website</li>
+            </ul>
+          </div>
+          <div class="module">
+            <h3>Module 3: Images and Media</h3>
+            <ul>
+              <li>Image Formats and Optimization</li>
+              <li>Responsive Images</li>
+              <li>Audio and Video Elements</li>
+              <li>Embedding Content (YouTube, Maps)</li>
+              <li>Project: Media Gallery</li>
+            </ul>
+          </div>
+          <div class="module">
+            <h3>Module 4: Lists and Tables</h3>
+            <ul>
+              <li>Ordered and Unordered Lists</li>
+              <li>Description Lists</li>
+              <li>Table Structure and Formatting</li>
+              <li>Accessible Tables</li>
+              <li>Project: Product Comparison Table</li>
+            </ul>
+          </div>
+          <div class="module">
+            <h3>Module 5: Forms and Input</h3>
+            <ul>
+              <li>Form Structure and Attributes</li>
+              <li>Input Types and Validation</li>
+              <li>Dropdowns, Checkboxes, Radio Buttons</li>
+              <li>Accessible Forms</li>
+              <li>Project: Contact Form</li>
+            </ul>
+          </div>
+          <div class="module">
+            <h3>Module 6: Semantic HTML5</h3>
+            <ul>
+              <li>Semantic Elements (header, footer, section)</li>
+              <li>HTML5 Document Outline</li>
+              <li>Accessibility (ARIA landmarks)</li>
+              <li>SEO Best Practices</li>
+              <li>Project: Semantic Blog Layout</li>
+            </ul>
+          </div>
+          <div class="module">
+            <h3>Module 7: Advanced Topics</h3>
+            <ul>
+              <li>Meta Tags and SEO</li>
+              <li>Favicons and Social Media Meta</li>
+              <li>HTML Entities and Symbols</li>
+              <li>Data Attributes</li>
+              <li>Project: Portfolio Website</li>
+            </ul>
+          </div>
+          <div class="module">
+            <h3>Module 8: Final Projects</h3>
+            <ul>
+              <li>Responsive Restaurant Website</li>
+              <li>Interactive Survey Form</li>
+              <li>Technical Documentation Page</li>
+              <li>Certificate Exam</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="testimonials">
+    <h2>What Our HTML Students Say</h2>
+    <div class="testimonial-cards">
+      <div class="testimonial-card">
+        <p>"I went from zero coding experience to building my first website in just two weeks. The HTML course made everything so approachable!"</p>
+        <div class="student-info">
+          <h4>Sarah Johnson</h4>
+          <p>Freelance Web Designer</p>
+        </div>
+      </div>
+      <div class="testimonial-card">
+        <p>"The semantic HTML module completely changed how I structure websites. My accessibility scores improved dramatically."</p>
+        <div class="student-info">
+          <h4>Michael Chen</h4>
+          <p>Frontend Developer</p>
+        </div>
+      </div>
+      <div class="testimonial-card">
+        <p>"As a marketer, learning HTML helped me communicate better with developers and make small website edits myself."</p>
+        <div class="student-info">
+          <h4>David Wilson</h4>
+          <p>Digital Marketing Specialist</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="course-cta">
+    <div class="cta-content">
+      <h2>Start Building Websites Today</h2>
+      <p>Join thousands of students who've launched their web development journey with our HTML course.</p>
+      <button class="cta-button" id="finalEnrollBtn">Enroll Now - $39.99</button>
+      <p class="money-back">30-day money-back guarantee</p>
+      <div class="bonus-offer">
+        <p>🔥 <strong>Bonus:</strong> Get our "HTML5 Cheat Sheet" and "Website Template Pack" when you enroll today!</p>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="footer-content">
+      <div class="footer-column">
+        <h3>engagefuel.store</h3>
+        <p>Your one-stop destination for quality programming education.</p>
+      </div>
+      <div class="footer-column">
+        <h3>Quick Links</h3>
+        <ul class="footer-links">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="index.html#courses">Courses</a></li>
+          <li><a href="#">About Us</a></li>
+        </ul>
+      </div>
+      <div class="footer-column">
+        <h3>Courses</h3>
+        <ul class="footer-links">
+          <li><a href="python-course.html">Python Basics</a></li>
+          <li><a href="cpp-course.html">C++ Programming</a></li>
+          <li><a href="oop-course.html">OOP Concepts</a></li>
+          <li><a href="html-course.html">HTML Fundamentals</a></li>
+        </ul>
+      </div>
+      <div class="footer-column">
+        <h3>Support</h3>
+        <ul class="footer-links">
+          <li><a href="#">Help Center</a></li>
+          <li><a href="#">Contact Us</a></li>
+          <li><a href="#">Privacy Policy</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="copyright">
+      &copy; 2023 engagefuel.store. All rights reserved.
+    </div>
+  </footer>
+
+  <script type="module" src="script.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const enrollButtons = document.querySelectorAll('#enrollCta, #finalEnrollBtn');
+      enrollButtons.forEach(button => {
+        button.addEventListener('click', () => {
+          const isLoggedIn = document.body.classList.contains('logged-in');
+          if (isLoggedIn) {
+            window.location.href = 'checkout.html?course=html';
+          } else {
+            window.location.href = 'signup.html?course=html';
+          }
+        });
+      });
+    });
+  </script>
+</body>
+</html>
