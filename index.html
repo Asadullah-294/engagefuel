@@ -1,603 +1,136 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>EngageFuel - Learn Programming</title>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
-    <meta http-equiv="Content-Security-Policy"
-      content="script-src 'self' https://www.gstatic.com https://www.googleapis.com; object-src 'none';">
-    <style>
-        :root {
-            --primary: #FF6B6B;
-            --secondary: #4ECDC4;
-            --accent: #FFE66D;
-            --dark: #121212;
-            --darker: #0a0a0a;
-            --light: #e0e0e0;
-            --lighter: #f5f5f5;
-            --purple: #BB86FC;
-            --orange: #FF9F1C;
-            --teal: #03DAC6;
-            --card-bg: #1e1e1e;
-            --text-muted: #aaaaaa;
-        }
-        
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Poppins', sans-serif;
-        }
-        
-        body {
-            background-color: var(--dark);
-            color: var(--light);
-            overflow-x: hidden;
-        }
-        
-        /* Header Styles */
-        header {
-            background: linear-gradient(135deg, #1a1a1a, #2a2a2a);
-            padding: 1rem 2rem;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
-            position: sticky;
-            top: 0;
-            z-index: 100;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-        }
-        
-        .navbar {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-        
-        .logo {
-            display: flex;
-            align-items: center;
-            font-size: 1.8rem;
-            font-weight: 700;
-            color: var(--teal);
-            text-shadow: 0 0 10px rgba(3, 218, 198, 0.3);
-        }
-        
-        .logo span {
-            color: var(--purple);
-        }
-        
-        .nav-links {
-            display: flex;
-            list-style: none;
-        }
-        
-        .nav-links li {
-            margin-left: 1.5rem;
-        }
-        
-        .nav-links a {
-            text-decoration: none;
-            color: var(--light);
-            font-weight: 500;
-            transition: all 0.3s;
-            padding: 0.5rem 1rem;
-            border-radius: 5px;
-        }
-        
-        .nav-links a:hover {
-            background: rgba(255, 255, 255, 0.1);
-            color: var(--teal);
-            transform: translateY(-2px);
-        }
-        
-        .auth-buttons button {
-            padding: 0.6rem 1.2rem;
-            border-radius: 30px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s;
-            margin-left: 1rem;
-        }
-        
-        .login {
-            background: transparent;
-            border: 2px solid var(--teal);
-            color: var(--teal);
-        }
-        
-        .login:hover {
-            background: var(--teal);
-            color: var(--dark);
-        }
-        
-        .signup {
-            background: var(--purple);
-            color: var(--dark);
-            border: 2px solid var(--purple);
-            box-shadow: 0 4px 15px rgba(187, 134, 252, 0.3);
-        }
-        
-        .signup:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(187, 134, 252, 0.4);
-            background: var(--lighter);
-            border-color: var(--lighter);
-        }
-        
-        /* Auth State Visibility */
-        #authButtons {
-            display: flex;
-        }
-        
-        #userProfile {
-            display: none;
-        }
-        
-        .logged-in #authButtons {
-            display: none;
-        }
-        
-        .logged-in #userProfile {
-            display: block;
-        }
-        
-        .logged-out #authButtons {
-            display: flex;
-        }
-        
-        .logged-out #userProfile {
-            display: none;
-        }
-        
-        /* User Profile Styles */
-        .user-profile {
-            position: relative;
-        }
-        
-        .user-dropdown {
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-        }
-        
-        .username {
-            font-weight: 600;
-            color: var(--teal);
-            margin-right: 10px;
-        }
-        
-        .dropdown-content {
-            display: none;
-            position: absolute;
-            right: 0;
-            top: 100%;
-            background-color: var(--card-bg);
-            min-width: 160px;
-            box-shadow: 0 8px 16px rgba(0,0,0,0.2);
-            z-index: 1;
-            border-radius: 8px;
-            overflow: hidden;
-            border: 1px solid rgba(255,255,255,0.1);
-        }
-        
-        .dropdown-content a {
-            color: var(--light);
-            padding: 12px 16px;
-            text-decoration: none;
-            display: block;
-            transition: all 0.3s;
-            font-size: 0.9rem;
-        }
-        
-        .dropdown-content a:hover {
-            background-color: rgba(255,255,255,0.05);
-            color: var(--teal);
-            padding-left: 20px;
-        }
-        
-        .user-dropdown:hover .dropdown-content {
-            display: block;
-        }
-        
-        /* Hero Section */
-        .hero {
-            text-align: center;
-            padding: 5rem 2rem;
-            background: linear-gradient(135deg, #1a1a2e, #16213e);
-            color: white;
-            clip-path: polygon(0 0, 100% 0, 100% 85%, 0 100%);
-            margin-bottom: -5rem;
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .hero::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: 
-                radial-gradient(circle at 20% 30%, rgba(187, 134, 252, 0.1) 0%, transparent 30%),
-                radial-gradient(circle at 80% 70%, rgba(3, 218, 198, 0.1) 0%, transparent 30%);
-            z-index: 0;
-        }
-        
-        .hero-content {
-            position: relative;
-            z-index: 1;
-            max-width: 800px;
-            margin: 0 auto;
-        }
-        
-        .hero h1 {
-            font-size: 3.5rem;
-            margin-bottom: 1.5rem;
-            background: linear-gradient(to right, var(--teal), var(--purple));
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
-        }
-        
-        .hero p {
-            font-size: 1.3rem;
-            max-width: 700px;
-            margin: 0 auto 2rem;
-            opacity: 0.9;
-            color: var(--lighter);
-        }
-        
-        .cta-button {
-            background: linear-gradient(to right, var(--teal), var(--purple));
-            color: var(--dark);
-            border: none;
-            padding: 1rem 2.5rem;
-            font-size: 1.2rem;
-            border-radius: 50px;
-            cursor: pointer;
-            transition: all 0.3s;
-            font-weight: 600;
-            box-shadow: 0 4px 15px rgba(3, 218, 198, 0.3);
-        }
-        
-        .cta-button:hover {
-            transform: translateY(-3px) scale(1.05);
-            box-shadow: 0 8px 25px rgba(187, 134, 252, 0.4);
-        }
-        
-        /* Courses Section */
-        .courses-section {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 6rem 2rem 4rem;
-        }
-        
-        .section-title {
-            text-align: center;
-            margin-bottom: 3rem;
-            position: relative;
-        }
-        
-        .section-title h2 {
-            font-size: 2.5rem;
-            background: linear-gradient(to right, var(--teal), var(--purple));
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
-            display: inline-block;
-        }
-        
-        .courses-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-            gap: 2rem;
-        }
-        
-        .course-card {
-            background: var(--card-bg);
-            border-radius: 15px;
-            overflow: hidden;
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
-            transition: all 0.3s;
-        }
-        
-        .course-card:hover {
-            transform: translateY(-10px);
-        }
-        
-        .course-header {
-            height: 160px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            font-size: 1.8rem;
-            font-weight: 700;
-        }
-        
-        .course-content {
-            padding: 1.5rem;
-        }
-        
-        .course-content h3 {
-            margin-bottom: 0.8rem;
-            color: var(--lighter);
-        }
-        
-        .course-content p {
-            color: var(--text-muted);
-            margin-bottom: 1.5rem;
-        }
-        
-        .enroll-btn {
-            background: linear-gradient(to right, var(--teal), var(--purple));
-            color: var(--dark);
-            border: none;
-            padding: 0.7rem 1.5rem;
-            border-radius: 50px;
-            cursor: pointer;
-            transition: all 0.3s;
-            font-weight: 600;
-            width: 100%;
-        }
-        
-        .enroll-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(187, 134, 252, 0.4);
-        }
-        
-        /* Footer */
-        footer {
-            background: var(--darker);
-            color: white;
-            padding: 4rem 2rem 2rem;
-            text-align: center;
-        }
-        
-        .footer-content {
-            max-width: 1200px;
-            margin: 0 auto;
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 2rem;
-            text-align: left;
-        }
-        
-        .footer-column h3 {
-            font-size: 1.3rem;
-            margin-bottom: 1.5rem;
-            color: var(--teal);
-        }
-        
-        .footer-links {
-            list-style: none;
-        }
-        
-        .footer-links li {
-            margin-bottom: 0.8rem;
-        }
-        
-        .footer-links a {
-            color: var(--text-muted);
-            text-decoration: none;
-            transition: all 0.3s;
-        }
-        
-        .footer-links a:hover {
-            color: var(--teal);
-        }
-        
-        .copyright {
-            margin-top: 3rem;
-            padding-top: 1.5rem;
-            border-top: 1px solid rgba(255, 255, 255, 0.05);
-            color: var(--text-muted);
-        }
-        
-        /* Responsive Design */
-        @media (max-width: 768px) {
-            .navbar {
-                flex-direction: column;
-            }
-            
-            .nav-links {
-                margin: 1.5rem 0;
-                flex-wrap: wrap;
-                justify-content: center;
-            }
-            
-            .nav-links li {
-                margin: 0.5rem;
-            }
-            
-            .auth-buttons {
-                margin-top: 1rem;
-            }
-            
-            .hero h1 {
-                font-size: 2.5rem;
-            }
-        }
-    </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>EngageFuel - Learn Programming</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet" />
+  <meta http-equiv="Content-Security-Policy"
+        content="script-src 'self' https://www.gstatic.com https://www.googleapis.com; object-src 'none';">
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body class="logged-out">
-    <header>
-        <nav class="navbar">
-            <div class="logo">
-                engage<span>fuel</span>.store
-            </div>
-            <ul class="nav-links">
-                <li><a href="#">Home</a></li>
-                <li><a href="#">Courses</a></li>
-                <li><a href="#">About</a></li>
-                <li><a href="#">Blog</a></li>
-                <li><a href="#">Contact</a></li>
-            </ul>
-            
-            <div class="auth-buttons" id="authButtons">
-                <a href="login.html"><button class="login">Login</button></a>
-                <a href="signup.html"><button class="signup">Sign Up Free</button></a>
-            </div>
-            
-            <div class="user-profile" id="userProfile">
-                <div class="user-dropdown">
-                    <span class="username">USERNAME</span>
-                    <div class="dropdown-content">
-                        <a href="#">Reward History</a>
-                        <a href="#">Support</a>
-                        <a href="#" id="logoutBtn">Logout</a>
-                    </div>
-                </div>
-            </div>
-        </nav>
-    </header>
-    
-    <section class="hero">
-        <div class="hero-content">
-            <h1>Fuel Your Coding Journey</h1>
-            <p>Master in-demand programming skills with our interactive courses designed for beginners and advanced learners alike.</p>
-            <button class="cta-button">Start Learning Today</button>
+  <header>
+    <nav class="navbar">
+      <div class="logo">
+        engage<span>fuel</span>.store
+      </div>
+      <ul class="nav-links">
+        <li><a href="#">Home</a></li>
+        <li><a href="#">Courses</a></li>
+        <li><a href="#">About</a></li>
+        <li><a href="#">Blog</a></li>
+        <li><a href="#">Contact</a></li>
+      </ul>
+      <div class="auth-buttons" id="authButtons">
+        <a href="login.html"><button class="login">Login</button></a>
+        <a href="signup.html"><button class="signup">Sign Up Free</button></a>
+      </div>
+      <div class="user-profile" id="userProfile">
+        <div class="user-dropdown">
+          <span class="username">USERNAME</span>
+          <div class="dropdown-content">
+            <a href="#">Reward History</a>
+            <a href="#">Support</a>
+            <a href="#" id="logoutBtn">Logout</a>
+          </div>
         </div>
-    </section>
-    
-    <section class="courses-section">
-        <div class="section-title">
-            <h2>Our Popular Courses</h2>
+      </div>
+    </nav>
+  </header>
+
+  <section class="hero">
+    <div class="hero-content">
+      <h1>Fuel Your Coding Journey</h1>
+      <p>Master in-demand programming skills with our interactive courses designed for beginners and advanced learners alike.</p>
+      <button class="cta-button">Start Learning Today</button>
+    </div>
+  </section>
+
+  <section class="courses-section">
+    <div class="section-title">
+      <h2>Our Popular Courses</h2>
+    </div>
+    <div class="courses-grid">
+      <div class="course-card">
+        <div class="course-header" style="background: linear-gradient(135deg, #00599C, #004482);">
+          C++ Programming
         </div>
-        <div class="courses-grid">
-            <div class="course-card">
-                <div class="course-header" style="background: linear-gradient(135deg, #00599C, #004482);">
-                    C++ Programming
-                </div>
-                <div class="course-content">
-                    <h3>Complete C++ Mastery</h3>
-                    <p>Learn C++ from basics to advanced concepts including STL, pointers, and memory management.</p>
-                    <button class="enroll-btn">Enroll Now</button>
-                </div>
-            </div>
-            
-            <div class="course-card">
-                <div class="course-header" style="background: linear-gradient(135deg, #6B5B95, #8E44AD);">
-                    OOPs Concepts
-                </div>
-                <div class="course-content">
-                    <h3>Object Oriented Programming</h3>
-                    <p>Master the four pillars of OOP: Abstraction, Encapsulation, Inheritance, and Polymorphism.</p>
-                    <button class="enroll-btn">Enroll Now</button>
-                </div>
-            </div>
-            
-            <div class="course-card">
-                <div class="course-header" style="background: linear-gradient(135deg, #E44D26, #F16529);">
-                    HTML5
-                </div>
-                <div class="course-content">
-                    <h3>Modern HTML5 Course</h3>
-                    <p>Build websites with the latest HTML5 features including semantic elements and multimedia.</p>
-                    <button class="enroll-btn">Enroll Now</button>
-                </div>
-            </div>
-            
-            <div class="course-card">
-                <div class="course-header" style="background: linear-gradient(135deg, #264DE4, #2965F1);">
-                    CSS3
-                </div>
-                <div class="course-content">
-                    <h3>CSS3 Styling Masterclass</h3>
-                    <p>Learn Flexbox, Grid, animations and responsive design with modern CSS techniques.</p>
-                    <button class="enroll-btn">Enroll Now</button>
-                </div>
-            </div>
+        <div class="course-content">
+          <h3>Complete C++ Mastery</h3>
+          <p>Learn C++ from basics to advanced concepts including STL, pointers, and memory management.</p>
+          <button class="enroll-btn">Enroll Now</button>
         </div>
-    </section>
-    
-    <footer>
-        <div class="footer-content">
-            <div class="footer-column">
-                <h3>engagefuel.store</h3>
-                <p>Your one-stop destination for quality programming education.</p>
-            </div>
-            
-            <div class="footer-column">
-                <h3>Quick Links</h3>
-                <ul class="footer-links">
-                    <li><a href="#">Home</a></li>
-                    <li><a href="#">Courses</a></li>
-                    <li><a href="#">About Us</a></li>
-                </ul>
-            </div>
-            
-            <div class="footer-column">
-                <h3>Courses</h3>
-                <ul class="footer-links">
-                    <li><a href="#">C++ Programming</a></li>
-                    <li><a href="#">OOPs Concepts</a></li>
-                    <li><a href="#">HTML5</a></li>
-                </ul>
-            </div>
-            
-            <div class="footer-column">
-                <h3>Support</h3>
-                <ul class="footer-links">
-                    <li><a href="#">Help Center</a></li>
-                    <li><a href="#">Contact Us</a></li>
-                    <li><a href="#">Privacy Policy</a></li>
-                </ul>
-            </div>
+      </div>
+      <div class="course-card">
+        <div class="course-header" style="background: linear-gradient(135deg, #6B5B95, #8E44AD);">
+          OOPs Concepts
         </div>
-        
-        <div class="copyright">
-            &copy; 2023 engagefuel.store. All rights reserved.
+        <div class="course-content">
+          <h3>Object Oriented Programming</h3>
+          <p>Master the four pillars of OOP: Abstraction, Encapsulation, Inheritance, and Polymorphism.</p>
+          <button class="enroll-btn">Enroll Now</button>
         </div>
-    </footer>
+      </div>
+      <div class="course-card">
+        <div class="course-header" style="background: linear-gradient(135deg, #E44D26, #F16529);">
+          HTML5
+        </div>
+        <div class="course-content">
+          <h3>Modern HTML5 Course</h3>
+          <p>Build websites with the latest HTML5 features including semantic elements and multimedia.</p>
+          <button class="enroll-btn">Enroll Now</button>
+        </div>
+      </div>
+      <div class="course-card">
+        <div class="course-header" style="background: linear-gradient(135deg, #264DE4, #2965F1);">
+          CSS3
+        </div>
+        <div class="course-content">
+          <h3>CSS3 Styling Masterclass</h3>
+          <p>Learn Flexbox, Grid, animations and responsive design with modern CSS techniques.</p>
+          <button class="enroll-btn">Enroll Now</button>
+        </div>
+      </div>
+    </div>
+  </section>
 
-<script type="module">
-    // Import Firebase modules
-    import { initializeApp } from "https://www.gstatic.com/firebasejs/9.22.2/firebase-app.js";
-    import { getAuth, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/9.22.2/firebase-auth.js";
+  <footer>
+    <div class="footer-content">
+      <div class="footer-column">
+        <h3>engagefuel.store</h3>
+        <p>Your one-stop destination for quality programming education.</p>
+      </div>
+      <div class="footer-column">
+        <h3>Quick Links</h3>
+        <ul class="footer-links">
+          <li><a href="#">Home</a></li>
+          <li><a href="#">Courses</a></li>
+          <li><a href="#">About Us</a></li>
+        </ul>
+      </div>
+      <div class="footer-column">
+        <h3>Courses</h3>
+        <ul class="footer-links">
+          <li><a href="#">C++ Programming</a></li>
+          <li><a href="#">OOPs Concepts</a></li>
+          <li><a href="#">HTML5</a></li>
+        </ul>
+      </div>
+      <div class="footer-column">
+        <h3>Support</h3>
+        <ul class="footer-links">
+          <li><a href="#">Help Center</a></li>
+          <li><a href="#">Contact Us</a></li>
+          <li><a href="#">Privacy Policy</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="copyright">
+      &copy; 2023 engagefuel.store. All rights reserved.
+    </div>
+  </footer>
 
-    // Firebase configuration
-    const firebaseConfig = {
-        apiKey: "AIzaSyDXBI1pZlmQrpT6lQXVPTMR5TLf3-utpqc",
-        authDomain: "engagefuel-ab998.firebaseapp.com",
-        projectId: "engagefuel-ab998",
-        storageBucket: "engagefuel-ab998.appspot.com",
-        messagingSenderId: "154190808873",
-        appId: "1:154190808873:web:b87c6bbf4511da173ad938"
-    };
-
-    // Initialize Firebase
-    const app = initializeApp(firebaseConfig);
-    const auth = getAuth(app);
-
-    // Auth state listener
-    onAuthStateChanged(auth, (user) => {
-        const body = document.body;
-
-        if (user) {
-            body.classList.add('logged-in');
-            body.classList.remove('logged-out');
-
-            const displayName = user.displayName || user.email.split('@')[0];
-            document.querySelector('.username').textContent = displayName ? displayName.toUpperCase() : 'USER';
-
-            document.getElementById('logoutBtn').addEventListener('click', (e) => {
-                e.preventDefault();
-                signOut(auth).then(() => {
-                    window.location.reload();
-                });
-            });
-
-        } else {
-            body.classList.add('logged-out');
-            body.classList.remove('logged-in');
-        }
-    });
-</script>
-
+  <script type="module" src="script.js"></script>
 </body>
 </html>
