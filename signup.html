@@ -566,10 +566,21 @@
     </div>
 
  <!-- Firebase v9 Modular SDK (via ES module) -->
-  <script type="module">
+ <script type="module">
     import { initializeApp } from "https://www.gstatic.com/firebasejs/9.22.2/firebase-app.js";
-    import { getAuth, createUserWithEmailAndPassword, onAuthStateChanged, updateProfile, deleteUser } from "https://www.gstatic.com/firebasejs/9.22.2/firebase-auth.js";
-    import { getFirestore, doc, setDoc, serverTimestamp } from "https://www.gstatic.com/firebasejs/9.22.2/firebase-firestore.js";
+    import {
+      getAuth,
+      createUserWithEmailAndPassword,
+      updateProfile,
+      onAuthStateChanged,
+      deleteUser
+    } from "https://www.gstatic.com/firebasejs/9.22.2/firebase-auth.js";
+    import {
+      getFirestore,
+      doc,
+      setDoc,
+      serverTimestamp
+    } from "https://www.gstatic.com/firebasejs/9.22.2/firebase-firestore.js";
 
     const firebaseConfig = {
       apiKey: "AIzaSyDXBI1pZlmQrpT6lQXVPTMR5TLf3-utpqc",
@@ -584,7 +595,6 @@
     const auth = getAuth(app);
     const db = getFirestore(app);
 
-    // Update country code display
     document.getElementById('country').addEventListener('change', function () {
       const selected = this.options[this.selectedIndex].value;
       if (selected) {
@@ -618,13 +628,11 @@
         errorMessage.style.display = 'block';
         return;
       }
-
       if (password !== confirmPassword) {
         errorMessage.textContent = "Passwords do not match";
         errorMessage.style.display = 'block';
         return;
       }
-
       if (password.length < 6) {
         errorMessage.textContent = "Password must be at least 6 characters long";
         errorMessage.style.display = 'block';
@@ -633,18 +641,16 @@
 
       try {
         const userCredential = await createUserWithEmailAndPassword(auth, email, password);
-        const user = userCredential.user;
+        await updateProfile(userCredential.user, { displayName: name });
 
-        await updateProfile(user, { displayName: name });
+        const uid = userCredential.user.uid;
 
-        const birthDate = new Date(birthYear, birthMonth - 1, birthDay);
-
-        await setDoc(doc(db, "users", user.uid), {
-          uid: user.uid,
+        await setDoc(doc(db, "users", uid), {
+          uid,
           email,
           displayName: name,
           gender,
-          birthDate: birthDate,
+          birthDate: new Date(birthYear, birthMonth - 1, birthDay),
           country,
           whatsapp,
           termsAgreed: agreeTerms,
@@ -656,9 +662,8 @@
         successMessage.style.display = "block";
 
         setTimeout(() => {
-          window.location.href = 'index.html';
+          window.location.href = "index.html";
         }, 1500);
-
       } catch (error) {
         console.error("Signup error:", error);
         errorMessage.textContent = error.message;
@@ -667,9 +672,8 @@
         if (auth.currentUser) {
           try {
             await deleteUser(auth.currentUser);
-            console.log("Rolled back user due to Firestore error");
-          } catch (deleteError) {
-            console.error("Error deleting user after failed Firestore write:", deleteError);
+          } catch (deleteErr) {
+            console.error("Cleanup failed:", deleteErr);
           }
         }
       }
@@ -677,7 +681,7 @@
 
     onAuthStateChanged(auth, (user) => {
       if (user) {
-        window.location.href = 'index.html';
+        window.location.href = "index.html";
       }
     });
   </script>
