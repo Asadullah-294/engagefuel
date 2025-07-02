@@ -7,8 +7,9 @@
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="signup.css" />
   
-  <!-- ✅ CSP Meta Tag (safe version without unsafe-inline) -->
-  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://www.gstatic.com https://www.googleapis.com; style-src 'self' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; connect-src https://firestore.googleapis.com https://www.googleapis.com https://firebase.googleapis.com https://identitytoolkit.googleapis.com;">
+<meta http-equiv="Content-Security-Policy"
+      content="script-src 'self' https://www.gstatic.com https://www.googleapis.com 'unsafe-eval'; object-src 'none';">
+ 
 </head>
 <body>
   <div class="auth-container">
