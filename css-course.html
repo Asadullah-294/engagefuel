@@ -301,20 +301,46 @@
   </footer>
 
   <script type="module" src="script.js"></script>
-  <script>
-    document.addEventListener('DOMContentLoaded', () => {
-      const enrollButtons = document.querySelectorAll('#enrollCta, #finalEnrollBtn');
-      enrollButtons.forEach(button => {
-        button.addEventListener('click', () => {
-          const isLoggedIn = document.body.classList.contains('logged-in');
-          if (isLoggedIn) {
-            window.location.href = 'checkout.html?course=css';
-          } else {
-            window.location.href = 'signup.html?course=css';
-          }
-        });
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    // Handle preloader
+    window.addEventListener('load', function() {
+      // Add loaded class to body after page fully loads
+      document.body.classList.add('loaded');
+      
+      // Remove preloader after animation completes
+      setTimeout(() => {
+        const preloader = document.querySelector('.preloader');
+        if (preloader) {
+          preloader.style.display = 'none';
+        }
+      }, 500); // Match this with the CSS transition time
+    });
+
+    // Mobile menu toggle
+    const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+    const mobileNavLinks = document.getElementById('mobileNavLinks');
+    
+    if (mobileMenuBtn && mobileNavLinks) {
+      mobileMenuBtn.addEventListener('click', () => {
+        mobileNavLinks.classList.toggle('active');
+        mobileMenuBtn.classList.toggle('active');
+      });
+    }
+
+    // Enrollment buttons
+    const enrollButtons = document.querySelectorAll('#enrollCta, #finalEnrollBtn');
+    enrollButtons.forEach(button => {
+      button.addEventListener('click', () => {
+        const isLoggedIn = document.body.classList.contains('logged-in');
+        if (isLoggedIn) {
+          window.location.href = 'checkout.html?course=css';
+        } else {
+          window.location.href = 'signup.html?course=css';
+        }
       });
     });
-  </script>
+  });
+</script>
 </body>
 </html>
