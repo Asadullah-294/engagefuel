@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>FAQs | EngageFuel</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet" />
+  <meta http-equiv="Content-Security-Policy"
+      content="script-src 'self' https://www.gstatic.com https://www.googleapis.com 'unsafe-eval'; object-src 'none';">
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body class="logged-out">
+  <!-- Preloader -->
+  <div class="preloader">
+    <div class="preloader-content">
+      <div class="preloader-logo">
+        engage<span>fuel</span>.store
+      </div>
+      <div class="preloader-spinner">
+        <div class="spinner-circle"></div>
+        <div class="spinner-circle"></div>
+        <div class="spinner-circle"></div>
+      </div>
+    </div>
+  </div>
+
+  <header>
+    <nav class="navbar">
+      <div class="logo">
+        engage<span>fuel</span>.store
+      </div>
+      <ul class="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="index.html#courses">Courses</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="#">Blog</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+      <div class="auth-buttons" id="authButtons">
+        <a href="login.html"><button class="login">Login</button></a>
+        <a href="signup.html"><button class="signup">Sign Up Free</button></a>
+      </div>
+      <div class="user-profile" id="userProfile">
+        <div class="user-dropdown">
+          <span class="username">USERNAME</span>
+          <div class="dropdown-content">
+            <a href="#">Reward History</a>
+            <a href="#">Support</a>
+            <a href="#" id="logoutBtn">Logout</a>
+          </div>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Mobile Navigation -->
+    <div class="mobile-nav">
+      <div class="mobile-nav-header">
+        <div class="logo">
+          engage<span>fuel</span>.store
+        </div>
+        <div class="mobile-menu-btn" id="mobileMenuBtn">
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+      </div>
+      <div class="mobile-nav-links" id="mobileNavLinks">
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="index.html#courses">Courses</a></li>
+          <li><a href="about.html">About</a></li>
+          <li><a href="#">Blog</a></li>
+          <li><a href="contact.html">Contact</a></li>
+          <li><a href="login.html">Login</a></li>
+          <li><a href="signup.html">Sign Up Free</a></li>
+        </ul>
+      </div>
+    </div>
+  </header>
+
+  <section class="faq-hero" style="background: linear-gradient(135deg, #6a1b9a, #9c27b0);">
+    <div class="faq-hero-content">
+      <h1>Frequently Asked Questions</h1>
+      <p>Find answers to common questions about our courses, enrollment process, and platform features</p>
+    </div>
+  </section>
+
+  <section class="faq-main">
+    <div class="container">
+      <div class="faq-search">
+        <input type="text" placeholder="Search FAQs..." id="faqSearch" />
+        <button type="button" id="searchButton">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M15.5 14h-.79l-.28-.27a6.5 6.5 0 0 0 1.48-5.34c-.47-2.78-2.79-5-5.59-5.34a6.505 6.505 0 0 0-7.27 7.27c.34 2.8 2.56 5.12 5.34 5.59a6.5 6.5 0 0 0 5.34-1.48l.27.28v.79l4.25 4.25c.41.41 1.08.41 1.49 0 .41-.41.41-1.08 0-1.49L15.5 14zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/>
+          </svg>
+        </button>
+      </div>
+
+      <div class="faq-categories">
+        <button class="category-btn active" data-category="all">All Questions</button>
+        <button class="category-btn" data-category="enrollment">Enrollment</button>
+        <button class="category-btn" data-category="courses">Courses</button>
+        <button class="category-btn" data-category="payment">Payment</button>
+        <button class="category-btn" data-category="technical">Technical</button>
+      </div>
+
+      <div class="faq-accordion">
+        <div class="faq-item" data-categories="enrollment">
+          <button class="faq-question">
+            <span>How do I enroll in a course?</span>
+            <svg class="faq-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M16.59 8.59L12 13.17 7.41 8.59 6 10l6 6 6-6z"/>
+            </svg>
+          </button>
+          <div class="faq-answer">
+            <p>To enroll in a course, simply click the "Enroll Now" button on any course page. You'll be prompted to sign up or log in if you haven't already. After completing the payment process (for paid courses), you'll gain immediate access to the course materials.</p>
+          </div>
+        </div>
+
+        <div class="faq-item" data-categories="payment">
+          <button class="faq-question">
+            <span>What payment methods do you accept?</span>
+            <svg class="faq-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M16.59 8.59L12 13.17 7.41 8.59 6 10l6 6 6-6z"/>
+            </svg>
+          </button>
+          <div class="faq-answer">
+            <p>We accept all major credit cards (Visa, Mastercard, American Express, Discover) as well as PayPal. For enterprise or group purchases, we also accept bank transfers - please contact our sales team for arrangements.</p>
+          </div>
+        </div>
+
+        <div class="faq-item" data-categories="courses,technical">
+          <button class="faq-question">
+            <span>Do I need any special software for the courses?</span>
+            <svg class="faq-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M16.59 8.59L12 13.17 7.41 8.59 6 10l6 6 6-6z"/>
+            </svg>
+          </button>
+          <div class="faq-answer">
+            <p>Most of our courses require only a modern web browser (Chrome, Firefox, Safari, or Edge). Some programming courses may require free software like Visual Studio Code or Python, which will be clearly indicated in the course requirements. All necessary tools are either free or have free alternatives available.</p>
+          </div>
+        </div>
+
+        <div class="faq-item" data-categories="enrollment">
+          <button class="faq-question">
+            <span>Can I take multiple courses at the same time?</span>
+            <svg class="faq-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M16.59 8.59L12 13.17 7.41 8.59 6 10l6 6 6-6z"/>
+            </svg>
+          </button>
+          <div class="faq-answer">
+            <p>Yes! You can enroll in multiple courses simultaneously and progress through them at your own pace. Our platform allows you to easily switch between courses, and you'll have lifetime access to any course you purchase, so you can always come back to complete it later.</p>
+          </div>
+        </div>
+
+        <div class="faq-item" data-categories="payment">
+          <button class="faq-question">
+            <span>Is there a money-back guarantee?</span>
+            <svg class="faq-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M16.59 8.59L12 13.17 7.41 8.59 6 10l6 6 6-6z"/>
+            </svg>
+          </button>
+          <div class="faq-answer">
+            <p>We offer a 30-day money-back guarantee for all courses. If you're not satisfied with your purchase for any reason, simply contact our support team within 30 days of enrollment for a full refund, no questions asked.</p>
+          </div>
+        </div>
+
+        <div class="faq-item" data-categories="courses">
+          <button class="faq-question">
+            <span>How long do I have access to a course?</span>
+            <svg class="faq-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M16.59 8.59L12 13.17 7.41 8.59 6 10l6 6 6-6z"/>
+            </svg>
+          </button>
+          <div class="faq-answer">
+            <p>You get lifetime access to all courses you purchase. This includes all future updates to the course content at no additional cost. Free courses remain accessible as long as they're offered on our platform.</p>
+          </div>
+        </div>
+
+        <div class="faq-item" data-categories="technical">
+          <button class="faq-question">
+            <span>What if I need technical support?</span>
+            <svg class="faq-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M16.59 8.59L12 13.17 7.41 8.59 6 10l6 6 6-6z"/>
+            </svg>
+          </button>
+          <div class="faq-answer">
+            <p>Our technical support team is available 24/7 via email at support@engagefuel.store. For urgent issues, you can also request a callback through our contact form. Most technical questions receive a response within 4 hours.</p>
+          </div>
+        </div>
+
+        <div class="faq-item" data-categories="courses">
+          <button class="faq-question">
+            <span>Are certificates provided upon completion?</span>
+            <svg class="faq-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M16.59 8.59L12 13.17 7.41 8.59 6 10l6 6 6-6z"/>
+            </svg>
+          </button>
+          <div class="faq-answer">
+            <p>Yes! All paid courses include a verifiable certificate of completion that you can download and share on LinkedIn or include in your resume. To earn a certificate, you'll need to complete all course modules and pass the final assessment with a score of 80% or higher.</p>
+          </div>
+        </div>
+
+        <div class="faq-item" data-categories="enrollment">
+          <button class="faq-question">
+            <span>Do you offer group discounts?</span>
+            <svg class="faq-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M16.59 8.59L12 13.17 7.41 8.59 6 10l6 6 6-6z"/>
+            </svg>
+          </button>
+          <div class="faq-answer">
+            <p>We offer significant discounts for group enrollments (5+ students). Discounts start at 20% for groups of 5 and can go up to 50% for enterprise purchases. Contact our team at groups@engagefuel.store for a customized quote based on your needs.</p>
+          </div>
+        </div>
+
+        <div class="faq-item" data-categories="technical">
+          <button class="faq-question">
+            <span>What are the system requirements?</span>
+            <svg class="faq-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M16.59 8.59L12 13.17 7.41 8.59 6 10l6 6 6-6z"/>
+            </svg>
+          </button>
+          <div class="faq-answer">
+            <p>Our platform works on any modern device with an internet connection. Minimum requirements include:
+              <ul>
+                <li>Windows 10/macOS 10.15 or later, or recent Linux distribution</li>
+                <li>Chrome 90+, Firefox 85+, Safari 14+, or Edge 90+</li>
+                <li>4GB RAM (8GB recommended for programming courses)</li>
+                <li>10MBps internet connection (for video streaming)</li>
+              </ul>
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div class="faq-cta">
+        <h3>Still have questions?</h3>
+        <p>Can't find what you're looking for? Our support team is happy to help!</p>
+        <a href="contact.html" class="cta-button">Contact Support</a>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="footer-content">
+      <div class="footer-column">
+        <h3>engagefuel.store</h3>
+        <p>Your one-stop destination for quality programming education.</p>
+      </div>
+      <div class="footer-column">
+        <h3>Quick Links</h3>
+        <ul class="footer-links">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="index.html#courses">Courses</a></li>
+          <li><a href="about.html">About Us</a></li>
+        </ul>
+      </div>
+      <div class="footer-column">
+        <h3>Resources</h3>
+        <ul class="footer-links">
+          <li><a href="faq.html">FAQs</a></li>
+          <li><a href="#">Blog</a></li>
+          <li><a href="#">Learning Resources</a></li>
+        </ul>
+      </div>
+      <div class="footer-column">
+        <h3>Support</h3>
+        <ul class="footer-links">
+          <li><a href="contact.html">Contact Us</a></li>
+          <li><a href="#">Help Center</a></li>
+          <li><a href="privacy.html">Privacy Policy</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="copyright">
+      &copy; 2023 engagefuel.store. All rights reserved.
+    </div>
+  </footer>
+
+  <script type="module" src="script.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      // Mobile menu toggle
+      const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+      const mobileNavLinks = document.getElementById('mobileNavLinks');
+      
+      mobileMenuBtn.addEventListener('click', () => {
+        mobileNavLinks.classList.toggle('active');
+        mobileMenuBtn.classList.toggle('active');
+      });
+
+      // Active link highlighting
+      const currentPage = location.pathname.split('/').pop();
+      const navLinks = document.querySelectorAll('.nav-links a, .mobile-nav-links a');
+      
+      navLinks.forEach(link => {
+        if (link.getAttribute('href') === currentPage) {
+          link.classList.add('active');
+        }
+      });
+
+      // FAQ Accordion functionality
+      const faqQuestions = document.querySelectorAll('.faq-question');
+      faqQuestions.forEach(question => {
+        question.addEventListener('click', () => {
+          const item = question.parentElement;
+          const answer = item.querySelector('.faq-answer');
+          const icon = item.querySelector('.faq-icon');
+          
+          // Toggle this item
+          item.classList.toggle('active');
+          
+          // Close other items if this one is opening
+          if (item.classList.contains('active')) {
+            faqQuestions.forEach(q => {
+              const otherItem = q.parentElement;
+              if (otherItem !== item && otherItem.classList.contains('active')) {
+                otherItem.classList.remove('active');
+                otherItem.querySelector('.faq-answer').style.maxHeight = null;
+                otherItem.querySelector('.faq-icon').style.transform = 'rotate(0deg)';
+              }
+            });
+          }
+          
+          // Toggle answer display
+          if (item.classList.contains('active')) {
+            answer.style.maxHeight = answer.scrollHeight + 'px';
+            icon.style.transform = 'rotate(180deg)';
+          } else {
+            answer.style.maxHeight = null;
+            icon.style.transform = 'rotate(0deg)';
+          }
+        });
+      });
+
+      // FAQ Search functionality
+      const faqSearch = document.getElementById('faqSearch');
+      const searchButton = document.getElementById('searchButton');
+      
+      function searchFAQs() {
+        const searchTerm = faqSearch.value.toLowerCase();
+        const faqItems = document.querySelectorAll('.faq-item');
+        
+        faqItems.forEach(item => {
+          const question = item.querySelector('.faq-question span').textContent.toLowerCase();
+          const answer = item.querySelector('.faq-answer').textContent.toLowerCase();
+          
+          if (question.includes(searchTerm) || answer.includes(searchTerm)) {
+            item.style.display = 'block';
+          } else {
+            item.style.display = 'none';
+          }
+        });
+      }
+      
+      searchButton.addEventListener('click', searchFAQs);
+      faqSearch.addEventListener('keyup', (e) => {
+        if (e.key === 'Enter') {
+          searchFAQs();
+        }
+      });
+
+      // FAQ Category filtering
+      const categoryButtons = document.querySelectorAll('.category-btn');
+      categoryButtons.forEach(button => {
+        button.addEventListener('click', () => {
+          // Update active button
+          categoryButtons.forEach(btn => btn.classList.remove('active'));
+          button.classList.add('active');
+          
+          const category = button.dataset.category;
+          const faqItems = document.querySelectorAll('.faq-item');
+          
+          if (category === 'all') {
+            faqItems.forEach(item => {
+              item.style.display = 'block';
+            });
+          } else {
+            faqItems.forEach(item => {
+              if (item.dataset.categories.includes(category)) {
+                item.style.display = 'block';
+              } else {
+                item.style.display = 'none';
+              }
+            });
+          }
+        });
+      });
+    });
+  </script>
+</body>
+</html>

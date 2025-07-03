@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>About Us | EngageFuel</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet" />
+  <meta http-equiv="Content-Security-Policy"
+      content="script-src 'self' https://www.gstatic.com https://www.googleapis.com 'unsafe-eval'; object-src 'none';">
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body class="logged-out">
+  <!-- Preloader -->
+  <div class="preloader">
+    <div class="preloader-content">
+      <div class="preloader-logo">
+        engage<span>fuel</span>.store
+      </div>
+      <div class="preloader-spinner">
+        <div class="spinner-circle"></div>
+        <div class="spinner-circle"></div>
+        <div class="spinner-circle"></div>
+      </div>
+    </div>
+  </div>
+
+  <header>
+    <nav class="navbar">
+      <div class="logo">
+        engage<span>fuel</span>.store
+      </div>
+      <ul class="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="index.html#courses">Courses</a></li>
+        <li><a href="about.html" class="active">About</a></li>
+        <li><a href="#">Blog</a></li>
+        <li><a href="/contact.html">Contact</a></li>
+      </ul>
+      <div class="auth-buttons" id="authButtons">
+        <a href="login.html"><button class="login">Login</button></a>
+        <a href="signup.html"><button class="signup">Sign Up Free</button></a>
+      </div>
+      <div class="user-profile" id="userProfile">
+        <div class="user-dropdown">
+          <span class="username">USERNAME</span>
+          <div class="dropdown-content">
+            <a href="#">Reward History</a>
+            <a href="#">Support</a>
+            <a href="#" id="logoutBtn">Logout</a>
+          </div>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Mobile Navigation -->
+    <div class="mobile-nav">
+      <div class="mobile-nav-header">
+        <div class="logo">
+          engage<span>fuel</span>.store
+        </div>
+        <div class="mobile-menu-btn" id="mobileMenuBtn">
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+      </div>
+      <div class="mobile-nav-links" id="mobileNavLinks">
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="index.html#courses">Courses</a></li>
+          <li><a href="about.html" class="active">About</a></li>
+          <li><a href="#">Blog</a></li>
+          <li><a href="/contact.html">Contact</a></li>
+          <li><a href="login.html">Login</a></li>
+          <li><a href="signup.html">Sign Up Free</a></li>
+        </ul>
+      </div>
+    </div>
+  </header>
+
+  <section class="about-hero" style="background: linear-gradient(135deg, #6a1b9a, #9c27b0);">
+    <div class="about-hero-content">
+      <h1>Fueling Your Learning Journey</h1>
+      <p>Discover the story behind EngageFuel and our mission to make programming education accessible to everyone</p>
+    </div>
+  </section>
+
+  <section class="about-story">
+    <div class="container">
+      <div class="about-section">
+        <div class="about-text">
+          <h2>Our Story</h2>
+          <p>EngageFuel was founded in 2020 by a team of passionate developers and educators who recognized a gap in programming education. We noticed that many learners struggled with traditional academic approaches to coding, while others couldn't afford expensive bootcamps.</p>
+          <p>What began as a small platform with three courses has grown into a thriving community of over 50,000 learners worldwide. Our unique project-based approach has helped students from diverse backgrounds launch careers in tech, build startups, and develop valuable digital skills.</p>
+        </div>
+        <div class="about-image">
+          <img src="images/team-working.jpg" alt="EngageFuel team collaborating" />
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="about-mission">
+    <div class="container">
+      <h2>Our Mission</h2>
+      <div class="mission-cards">
+        <div class="mission-card">
+          <div class="mission-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M12 2L1 12h3v9h6v-6h4v6h6v-9h3L12 2zm0 2.8L18 10v9h-2v-6h-8v6H6v-9l6-7.2z"/>
+            </svg>
+          </div>
+          <h3>Accessible Education</h3>
+          <p>Break down barriers to tech education with affordable, high-quality courses available to anyone with an internet connection.</p>
+        </div>
+        <div class="mission-card">
+          <div class="mission-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M12 3L1 9l11 6 9-4.91V17h2V9M5 13.18v4L12 21l7-3.82v-4L12 17l-7-3.82z"/>
+            </svg>
+          </div>
+          <h3>Practical Skills</h3>
+          <p>Focus on real-world applications through hands-on projects that build portfolio-worthy work.</p>
+        </div>
+        <div class="mission-card">
+          <div class="mission-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M12 4c4.41 0 8 3.59 8 8s-3.59 8-8 8-8-3.59-8-8 3.59-8 8-8m0-2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 6H9v8h2v-4h1c1.1 0 2-.9 2-2v-1c0-1.1-.9-2-2-2zm0 3h-1v-1h1v1z"/>
+            </svg>
+          </div>
+          <h3>Community Support</h3>
+          <p>Foster a supportive learning environment with mentors, forums, and peer collaboration.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="about-team">
+    <div class="container">
+      <h2>Meet Our Team</h2>
+      <div class="team-members">
+        <div class="team-member">
+          <img src="images/team-member1.jpg" alt="Alex Johnson" />
+          <h3>Alex Johnson</h3>
+          <p class="role">Founder & CEO</p>
+          <p class="bio">Former Google engineer with 10+ years experience in software development and education.</p>
+        </div>
+        <div class="team-member">
+          <img src="images/team-member2.jpg" alt="Maria Garcia" />
+          <h3>Maria Garcia</h3>
+          <p class="role">Chief Learning Officer</p>
+          <p class="bio">Curriculum designer specializing in making complex concepts accessible to beginners.</p>
+        </div>
+        <div class="team-member">
+          <img src="images/team-member3.jpg" alt="David Kim" />
+          <h3>David Kim</h3>
+          <p class="role">Lead Instructor</p>
+          <p class="bio">Full-stack developer passionate about helping students bridge the gap between learning and employment.</p>
+        </div>
+        <div class="team-member">
+          <img src="images/team-member4.jpg" alt="Sarah Williams" />
+          <h3>Sarah Williams</h3>
+          <p class="role">Community Manager</p>
+          <p class="bio">Dedicated to building an inclusive, supportive environment for all learners.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="about-stats">
+    <div class="container">
+      <h2>By The Numbers</h2>
+      <div class="stat-grid">
+        <div class="stat-item">
+          <h3>50,000+</h3>
+          <p>Students Empowered</p>
+        </div>
+        <div class="stat-item">
+          <h3>25+</h3>
+          <p>Countries Reached</p>
+        </div>
+        <div class="stat-item">
+          <h3>15+</h3>
+          <p>Courses Available</p>
+        </div>
+        <div class="stat-item">
+          <h3>98%</h3>
+          <p>Satisfaction Rate</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="about-cta">
+    <div class="container">
+      <h2>Ready to Start Your Journey?</h2>
+      <p>Join thousands of students transforming their careers with our courses</p>
+      <a href="signup.html" class="cta-button">Sign Up Free</a>
+    </div>
+  </section>
+
+  <footer>
+    <div class="footer-content">
+      <div class="footer-column">
+        <h3>engagefuel.store</h3>
+        <p>Your one-stop destination for quality programming education.</p>
+      </div>
+      <div class="footer-column">
+        <h3>Quick Links</h3>
+        <ul class="footer-links">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="index.html#courses">Courses</a></li>
+          <li><a href="about.html">About Us</a></li>
+        </ul>
+      </div>
+      <div class="footer-column">
+        <h3>Courses</h3>
+        <ul class="footer-links">
+          <li><a href="python-course.html">Python Basics</a></li>
+          <li><a href="cpp-course.html">C++ Programming</a></li>
+          <li><a href="oop-course.html">OOP Concepts</a></li>
+          <li><a href="html-course.html">HTML Fundamentals</a></li>
+          <li><a href="css-course.html">CSS Mastery</a></li>
+        </ul>
+      </div>
+      <div class="footer-column">
+        <h3>Support</h3>
+        <ul class="footer-links">
+          <li><a href="#">Help Center</a></li>
+          <li><a href="/contact.html">Contact Us</a></li>
+          <li><a href="/privacy.html">Privacy Policy</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="copyright">
+      &copy; 2023 engagefuel.store. All rights reserved.
+    </div>
+  </footer>
+
+  <script type="module" src="script.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      // Mobile menu toggle
+      const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+      const mobileNavLinks = document.getElementById('mobileNavLinks');
+      
+      mobileMenuBtn.addEventListener('click', () => {
+        mobileNavLinks.classList.toggle('active');
+        mobileMenuBtn.classList.toggle('active');
+      });
+
+      // Active link highlighting
+      const currentPage = location.pathname.split('/').pop();
+      const navLinks = document.querySelectorAll('.nav-links a, .mobile-nav-links a');
+      
+      navLinks.forEach(link => {
+        if (link.getAttribute('href') === currentPage) {
+          link.classList.add('active');
+        }
+      });
+    });
+  </script>
+</body>
+</html>
